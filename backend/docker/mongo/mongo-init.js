@@ -3,7 +3,7 @@ db = db.getSiblingDB("mongo_internet_shop");
 db.createUser({
     user: "user",
     pwd: "password",
-    roles: [{ role: "dbOwner", db: "dev_mongo_db" }],
+    roles: [{ role: "dbOwner", db: "mongo_internet_shop" }],
 });
 // MongoDB requires explicit user and role setup for access control. By default, if access control is enabled, you must create users and assign appropriate
 // roles that determine what actions those users can perform. Roles in MongoDB are fine-grained, meaning you must specify exactly what each user can do,
