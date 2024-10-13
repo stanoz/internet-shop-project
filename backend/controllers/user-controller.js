@@ -1,9 +1,6 @@
 const User = require('../models/user')
 const populateDb = require("../data/populate-db");
 
-exports.getTest = (req, res, next) => {
-    res.send('hello')
-}
 exports.getAll = async (req, res, next) => {
     try {
         const users = await User.find()

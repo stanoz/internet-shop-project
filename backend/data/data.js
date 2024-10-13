@@ -9,42 +9,20 @@ module.exports = DUMMY_USERS = [
             city: 'Anytown',
             state: 'CA',
             zip: '12345'
-        }
+        },
+        isAdmin: false,
     },
     {
-        name: 'Jane',
-        surname: 'Smith',
-        email: 'jane@example.com',
-        password: 'password123',
+        name: 'Admin',
+        surname: 'Admin',
+        email: 'admin@example.com',
+        password: 'Admin123',
         address: {
             street: '456 Oak St',
             city: 'Othertown',
             state: 'TX',
             zip: '67890'
-        }
+        },
+        isAdmin: true,
     },
-    {
-        name: 'Alice',
-        surname: 'Johnson',
-        email: 'alice@example.com',
-        password: 'password123',
-        address: {
-            street: '789 Pine St',
-            city: 'Sometown',
-            state: 'FL',
-            zip: '11223'
-        }
-    },
-    {
-        name: 'Bob',
-        surname: 'Brown',
-        email: 'bob@example.com',
-        password: 'password123',
-        address: {
-            street: '101 Maple St',
-            city: 'Anycity',
-            state: 'NY',
-            zip: '44556'
-        }
-    }
 ]
