@@ -4,8 +4,9 @@ const userRoutes = require('./routes/user')
 
 const mongoose = require('mongoose')
 
-
 const app = express();
+
+app.use(express.json())
 
 app.use('/users',userRoutes)
 

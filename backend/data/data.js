@@ -17,12 +17,6 @@ module.exports = DUMMY_USERS = [
         surname: 'Admin',
         email: 'admin@example.com',
         password: 'Admin123',
-        address: {
-            street: '456 Oak St',
-            city: 'Othertown',
-            state: 'TX',
-            zip: '67890'
-        },
         isAdmin: true,
     },
 ]

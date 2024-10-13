@@ -6,6 +6,8 @@ router.get('/get-all', userController.getAll)
 
 router.post('/populate-db', userController.populateDb)
 
-router.get('/', userController.getTest)
+router.post('/login',userController.login)
+
+router.post('/register',userController.register)
 
 module.exports = router
