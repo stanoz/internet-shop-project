@@ -13,7 +13,7 @@ exports.getAll = async (req, res, next) => {
 
         return res.status(404).json({message: 'Products not found!'})
     } catch (err) {
-        res.status(500).json({message: err.message})
+        res.status(409).json({message: err.message})
     }
 }
 
@@ -36,10 +36,6 @@ exports.getProduct = async (req, res, next) => {
             data: product,
         })
     } catch (err) {
-        res.status(500).json({message: err.message})
+        res.status(409).json({message: err.message})
     }
-}
-
-exports.addProduct = async (req, res, next) => {
-    const product = req.body
 }

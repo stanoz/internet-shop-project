@@ -20,7 +20,7 @@ exports.getAll = async (req, res, next) => {
             })
         }
     } catch (err) {
-        res.status(500).json({
+        res.status(409).json({
             status: 'error',
             error: err.message,
         })
