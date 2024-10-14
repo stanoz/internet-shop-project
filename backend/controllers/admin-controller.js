@@ -3,7 +3,6 @@ const Category = require('../models/category')
 
 exports.addProduct = async (req, res, next) => {
     const product = req.body
-    //TODO: validate
 
     try {
         const productCheck = await Product.exists(product.id)
@@ -27,7 +26,6 @@ exports.editProduct = async (req, res, next) => {
     if (id === null) {
         return res.status(400).json({message: 'Invalid id!'})
     }
-    //TODO: validate
 
     try {
         const productCheck = await Product.exists(id)
@@ -72,7 +70,6 @@ exports.deleteProduct = async (req, res, next) => {
 
 exports.addCategory = async (req, res, next) => {
     const category = req.body
-    //TODO: validate
     try {
         const categoryCheck = await Category.exists(category.name)
 
@@ -92,7 +89,6 @@ exports.addCategory = async (req, res, next) => {
 exports.editCategory = async (req, res, next) => {
     const id = req.params.categoryId || null
     const category = req.body
-    //TODO: validate
 
     if (id === null) {
         return res.status(400).json({message: 'Invalid id!'})
