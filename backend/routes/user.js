@@ -13,13 +13,13 @@ router.post('/login', [
         .isEmail().withMessage('Invalid email address!')
         .normalizeEmail(),
     check('password')
-        .notEmpty().withMessage('Password must not be empty!')
-        .trim().not().contains(' ').withMessage('Password must not contain space!')
-        .isLength({min: 8}).withMessage('Password must be at least 8 characters long!')
-        .matches(/[a-z]/).withMessage('Password must contain at least one lowercase letter')
-        .matches(/[A-Z]/).withMessage('Password must contain at least one uppercase letter')
-        .matches(/\d/).withMessage('Password must contain at least one number')
-        .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('Password must contain at least one special character'),
+        .isStrongPassword({
+            minLength: 8,
+            minLowercase: 2,
+            minNumbers: 1,
+            minSymbols: 1,
+            minUppercase: 1,
+        }),
 ], exceptionHandler, userController.login)
 
 router.post('/register', [
@@ -33,13 +33,13 @@ router.post('/register', [
         .isEmail().withMessage('Invalid email address!')
         .normalizeEmail(),
     check('password')
-        .notEmpty().withMessage('Password must not be empty!')
-        .trim().not().contains(' ').withMessage('Password must not contain space!')
-        .isLength({min: 8}).withMessage('Password must be at least 8 characters long!')
-        .matches(/[a-z]/).withMessage('Password must contain at least one lowercase letter')
-        .matches(/[A-Z]/).withMessage('Password must contain at least one uppercase letter')
-        .matches(/\d/).withMessage('Password must contain at least one number')
-        .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('Password must contain at least one special character'),
+        .isStrongPassword({
+            minLength: 8,
+            minLowercase: 2,
+            minNumbers: 1,
+            minSymbols: 1,
+            minUppercase: 1,
+        }),
     check('address').optional(),
     check('address.street')
         .if(check('address').exists())
