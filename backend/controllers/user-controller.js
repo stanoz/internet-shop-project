@@ -55,7 +55,7 @@ exports.login = async (req, res, next) => {
 
 exports.register = async (req, res, next) => {
     const user = req.body
-    //TODO: validate all fields
+
     try {
         const userCheck = await User.exists(user.email)
         if (userCheck) {
