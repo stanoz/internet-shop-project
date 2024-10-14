@@ -29,7 +29,7 @@ exports.getAll = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     const {email, password} = req.body
-    //TODO: validate all fields
+
     try {
         const userCheck = await User.exists(email)
         if (!userCheck) {
