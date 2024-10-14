@@ -44,4 +44,4 @@ atlassian-ide-plugin.xml
 # Editor-based Rest Client
 .idea/httpRequests
 
-node_modules/
+*node_modules/
