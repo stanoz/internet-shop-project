@@ -37,7 +37,10 @@ const productValidationRules = () => [
         .if(check('reviews').exists())
         .isNumeric({no_symbols: true}).withMessage('Price must be a number')
         .custom((value) => {
-            return value <= 0 ? throw new Error('Price must be greater than 0!') : true;
+            if (value <= 0) {
+                throw new Error('Rate must be greater than 0!')
+            }
+            return true
         }),
     check('reviews.description')
         .if(check('reviews').exists())

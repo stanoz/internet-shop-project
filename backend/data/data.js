@@ -3,7 +3,7 @@ module.exports = DUMMY_USERS = [
         name: 'John',
         surname: 'Doe',
         email: 'john@example.com',
-        password: 'password123',
+        password: 'A1b@cD2e',
         address: {
             street: '123 Main St',
             city: 'Anytown',
@@ -16,7 +16,7 @@ module.exports = DUMMY_USERS = [
         name: 'Admin',
         surname: 'Admin',
         email: 'admin@example.com',
-        password: 'Admin123',
+        password: 'A1b@cD2e',
         isAdmin: true,
     },
 ]

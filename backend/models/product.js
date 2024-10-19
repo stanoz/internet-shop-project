@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const categorySchema = require('category')
+const Category = require('./category')
 
 const Schema = mongoose.Schema
 
@@ -13,7 +13,7 @@ const ProductSchema = new Schema({
         required: true,
     },
     category: {
-        type: categorySchema,
+        type: Schema.Types.ObjectId,
         ref: 'Category',
         index: true,
     },

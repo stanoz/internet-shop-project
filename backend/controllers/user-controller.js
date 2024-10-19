@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const populateDb = require("../data/populate-db");
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const SALT_ROUNDS = 10
 
@@ -31,12 +32,12 @@ exports.login = async (req, res, next) => {
     const {email, password} = req.body
 
     try {
-        const userCheck = await User.exists(email)
+        const userCheck = await User.exists({email})
         if (!userCheck) {
             return res.status(404).json({message: 'User not found!'})
         }
 
-        const userFromDb = await User.findOne(user.email)
+        const userFromDb = await User.findOne({email})
         if (!userFromDb) {
             throw new Error("Error during fetching user from the database!")
         }
@@ -44,6 +45,12 @@ exports.login = async (req, res, next) => {
         const isPasswordMatch = await bcrypt.compare(password, userFromDb.password)
 
         if (isPasswordMatch) {
+            const jwtToken = jwt.sign({email}, 'AccessToken', {expiresIn: '10h'})
+            res.cookie('token', jwtToken, {
+                httpOnly: true,
+                sameSite: 'Strict',
+                maxAge: 36000000 //10h
+            })
             return res.status(200).json({message: 'User logged in successfully!'})
         }
         res.status(401).json({message: 'Invalid credentials!'})

@@ -2,9 +2,10 @@ const express = require('express')
 const userController = require('../controllers/user-controller')
 const {check} = require('express-validator')
 const exceptionHandler = require('../utils/exception-handler')
+const authenticate = require('../security/authenticateJWT')
 const router = express.Router()
 
-router.get('/get-all', userController.getAll)
+router.get('/get-all', authenticate, userController.getAll)
 
 router.post('/populate-db', userController.populateDb)
 

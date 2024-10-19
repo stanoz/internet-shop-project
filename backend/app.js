@@ -1,4 +1,5 @@
 const express = require('express');
+const cookieParser = require('cookie-parser')
 
 const userRoutes = require('./routes/user')
 const productRoutes = require('./routes/product')
@@ -10,6 +11,7 @@ const mongoose = require('mongoose')
 const app = express();
 
 app.use(express.json())
+app.use(cookieParser())
 
 app.use('/products', productRoutes)
 app.use('/users', userRoutes)
