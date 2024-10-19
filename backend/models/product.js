@@ -15,6 +15,7 @@ const ProductSchema = new Schema({
     category: {
         type: categorySchema,
         ref: 'Category',
+        index: true,
     },
     image: {
         type: String,
@@ -23,6 +24,11 @@ const ProductSchema = new Schema({
     price: {
         type: Number,
         required: true,
+    },
+    size: {
+        type: String,
+        required: true,
+        index: true,
     },
     reviews: {
         type: [{
