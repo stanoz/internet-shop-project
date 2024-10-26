@@ -28,6 +28,17 @@ const productValidationRules = () => [
 
             return true;
         }),
+    check('quantity')
+        .isNumeric({no_symbols: true}).withMessage('Quantity must be a number')
+        .custom((value) => {
+            if (value <= 0) {
+                throw new Error('Quantity must be greater than 0!')
+            }
+            if (!Number.isInteger(Number(value))) {
+                throw new Error('Quantity must be an integer!')
+            }
+            return true
+        }),
     check('reviews').optional(),
     check('reviews.author')
         .if(check('reviews').exists())

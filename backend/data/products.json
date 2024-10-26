@@ -1,242 +1,332 @@
 [
-    {
-        "title": "Blouse",
-        "description": "Recently we mention several add or pattern interesting.\nEver necessary lead later. Already than early common billion source.",
-        "category": "Western",
-        "image": "https://dummyimage.com/117x108",
-        "price": 26.35,
-        "size": "M"
-    },
-    {
-        "title": "Hoodie",
-        "description": "Rate attack couple body light sport ten. Available particular something third medical popular realize indicate.\nAvailable car really PM source.",
-        "category": "Four",
-        "image": "https://placekitten.com/559/184",
-        "price": 130.58,
-        "size": "M"
-    },
-    {
-        "title": "Shorts",
-        "description": "Soldier trip necessary fact. Full evidence method.\nPlan well small certain idea into film. Water strong wish impact himself. Sure song direction protect focus three energy.",
-        "category": "Soon",
-        "image": "https://www.lorempixel.com/392/879",
-        "price": 35.38,
-        "size": "XL"
-    },
-    {
-        "title": "Shorts",
-        "description": "Paper project particular parent program indicate. With store us or. Really into expect.\nMove expert federal morning development.",
-        "category": "Onto",
-        "image": "https://www.lorempixel.com/554/231",
-        "price": 160.09,
-        "size": "M"
-    },
-    {
-        "title": "Jacket",
-        "description": "Result attorney so similar. Place dream listen film upon push certainly.\nHuge sort summer word front just appear. Start student free establish Democrat month major.",
-        "category": "Protect",
-        "image": "https://placekitten.com/211/63",
-        "price": 81.19,
-        "size": "S"
-    },
-    {
-        "title": "Sweater",
-        "description": "Pattern reason culture even unit.\nStrategy family local face message fine gas. Sometimes most sort use establish writer what.\nCarry eye design here. Article out six three everybody it away.",
-        "category": "Price",
-        "image": "https://dummyimage.com/417x271",
-        "price": 36.94,
-        "size": "M"
-    },
-    {
-        "title": "Blouse",
-        "description": "Republican money discover. Long social past suddenly article strong. Your part her thus instead alone have.\nLeft truth audience authority however character result. Kid evidence left those rather.",
-        "category": "Western",
-        "image": "https://placekitten.com/146/832",
-        "price": 101.63,
-        "size": "M"
-    },
-    {
-        "title": "Sweater",
-        "description": "Tend score mean together while career. None officer type way last century.\nCitizen program organization friend.",
-        "category": "Onto",
-        "image": "https://dummyimage.com/253x651",
-        "price": 152.91,
-        "size": "M"
-    },
-    {
-        "title": "Skirt",
-        "description": "Agreement south enough. Perform area above manager memory whatever. Lot sure east Congress American director foreign operation.",
-        "category": "Soon",
-        "image": "https://dummyimage.com/619x219",
-        "price": 146.39,
-        "size": "XL"
-    },
-    {
-        "title": "Jeans",
-        "description": "Dog situation make important police. At prepare avoid. Forward meeting agent early forward few modern.",
-        "category": "Soon",
-        "image": "https://www.lorempixel.com/658/928",
-        "price": 113.98,
-        "size": "XL"
-    },
-    {
-        "title": "Dress",
-        "description": "Democratic decision stop significant his. Over recently piece itself office of big.",
-        "category": "Four",
-        "image": "https://placekitten.com/898/529",
-        "price": 169.86,
-        "size": "L"
-    },
-    {
-        "title": "Coat",
-        "description": "Step debate last serve push again why. Road push might mouth western.\nTake meeting simply pick. Remain soldier professor reach.",
-        "category": "Onto",
-        "image": "https://placekitten.com/25/798",
-        "price": 164.8,
-        "size": "L"
-    },
-    {
-        "title": "Jeans",
-        "description": "Painting phone family phone. Race such American many none.\nAttack project report deep late. Land weight raise together.\nBecome him amount rich report. Board however place data region main peace many.",
-        "category": "Four",
-        "image": "https://dummyimage.com/450x643",
-        "price": 121.03,
-        "size": "XL"
-    },
-    {
-        "title": "Skirt",
-        "description": "And management moment. Oil success fish type forget.\nStrong civil imagine phone ready different. End draw edge how. To example catch you.",
-        "category": "Protect",
-        "image": "https://dummyimage.com/344x661",
-        "price": 122.78,
-        "size": "S"
-    },
-    {
-        "title": "Shorts",
-        "description": "Step growth radio. Through result quality instead receive source fire. Worker wall author billion remember early soon.\nPositive themselves ability make notice. Community personal career although eye.",
-        "category": "Protect",
-        "image": "https://placeimg.com/584/128/any",
-        "price": 55.24,
-        "size": "M"
-    },
-    {
-        "title": "Coat",
-        "description": "Analysis white likely. Wish general arm defense performance brother language. Mrs program open listen occur.\nEye student moment study. Us until high often grow. Senior to tree write former fund.",
-        "category": "True",
-        "image": "https://dummyimage.com/105x32",
-        "price": 46.12,
-        "size": "XL"
-    },
-    {
-        "title": "Hoodie",
-        "description": "Weight red these participant question role produce.\nShow military election concern evidence six rule. Be strategy age story region value. Social customer hard national arm near.",
-        "category": "Four",
-        "image": "https://placeimg.com/1012/200/any",
-        "price": 74.34,
-        "size": "XL"
-    },
-    {
-        "title": "Shorts",
-        "description": "Win citizen American dark style pattern. Alone use someone he strategy go marriage. Morning trial seven current actually.\nEducation time able certainly boy newspaper. Situation issue lawyer soldier.",
-        "category": "Soon",
-        "image": "https://www.lorempixel.com/26/442",
-        "price": 11.11,
-        "size": "XL"
-    },
-    {
-        "title": "Sweater",
-        "description": "Food purpose if artist number.\nWife somebody yes assume staff. Option more law.\nModel my summer operation current into kitchen one. By study step create summer summer TV.",
-        "category": "Protect",
-        "image": "https://dummyimage.com/314x13",
-        "price": 73.94,
-        "size": "L"
-    },
-    {
-        "title": "Dress",
-        "description": "Involve line defense these doctor special third. Year view not practice hot where perform road.\nLater people order commercial watch. Sport learn defense challenge season focus art. Treat than class.",
-        "category": "Four",
-        "image": "https://dummyimage.com/576x730",
-        "price": 173.8,
-        "size": "M"
-    },
-    {
-        "title": "Sweater",
-        "description": "Pattern so entire start. Tough institution course dog occur.\nIt at tend. Born he with amount. Different others own loss who also without.",
-        "category": "Four",
-        "image": "https://placekitten.com/245/864",
-        "price": 79.81,
-        "size": "XL"
-    },
-    {
-        "title": "Shorts",
-        "description": "Continue professional before really day away. Not trial result begin guy rise never.\nTechnology reality and task southern. At music there party hit responsibility.",
-        "category": "True",
-        "image": "https://dummyimage.com/252x52",
-        "price": 159.37,
-        "size": "S"
-    },
-    {
-        "title": "Jeans",
-        "description": "Despite able site though wish relationship. Newspaper this name approach region generation.\nWhole tax financial tough dark early. Truth medical student raise service worker.",
-        "category": "Blue",
-        "image": "https://placekitten.com/866/25",
-        "price": 43.79,
-        "size": "S"
-    },
-    {
-        "title": "Jeans",
-        "description": "Chair white arrive include administration. Land if century son.\nBegin media election one. These side situation particular few so audience special.",
-        "category": "Protect",
-        "image": "https://www.lorempixel.com/17/610",
-        "price": 77.03,
-        "size": "M"
-    },
-    {
-        "title": "Dress",
-        "description": "His lawyer now information thousand.\nStop economic expert paper send mission site. Also care house could dream player cold race. Late scientist see medical owner investment threat.",
-        "category": "Protect",
-        "image": "https://placeimg.com/674/801/any",
-        "price": 131.32,
-        "size": "M"
-    },
-    {
-        "title": "Shorts",
-        "description": "Follow direction Republican into hear event guess something. Color arrive seem eye old great she. Together none environment experience college area.\nMuch carry watch beautiful.",
-        "category": "Western",
-        "image": "https://www.lorempixel.com/724/269",
-        "price": 193.84,
-        "size": "L"
-    },
-    {
-        "title": "Hoodie",
-        "description": "Including however rest recent. Factor describe physical a guy.\nSame how always individual play care summer. Close middle others away few none.\nWonder small movie oil. Defense fire teacher head.",
-        "category": "Four",
-        "image": "https://dummyimage.com/581x277",
-        "price": 138.79,
-        "size": "L"
-    },
-    {
-        "title": "T-Shirt",
-        "description": "Too friend agent herself clearly capital though top.\nTrial sense note market pick score mission people. Occur I pass politics reality mean hair.",
-        "category": "Price",
-        "image": "https://dummyimage.com/480x579",
-        "price": 125.82,
-        "size": "XL"
-    },
-    {
-        "title": "Jeans",
-        "description": "Responsibility door exactly interest section. Way great indicate doctor they. Audience more plant how reveal Republican only.",
-        "category": "Group",
-        "image": "https://placekitten.com/978/142",
-        "price": 79.12,
-        "size": "S"
-    },
-    {
-        "title": "Jacket",
-        "description": "Institution song natural different. Rule about matter success result which account. Analysis money relationship why.",
-        "category": "Price",
-        "image": "https://www.lorempixel.com/420/343",
-        "price": 27.34,
-        "size": "XL"
-    }
+  {
+    "title": "Jeans OldLace",
+    "description": "Jeans in XS size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Jeans",
+    "image": "https://images.only.com/15181934/3113218/001/only-onlmilahwskankdnmbj13994noos-blue.jpg?v=83ba3232a4e91675170e9f5791a3b39b&format=webp&width=1280&quality=90&key=25-0-3",
+    "price": 64.49,
+    "size": "XS",
+    "quantity": 69,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Trousers LightGray",
+    "description": "Trousers in XS size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Trousers",
+    "image": "https://image.hm.com/assets/hm/03/3c/033c21dca6cb954062e8db7144d54e2010f9352e.jpg?imwidth=2160",
+    "price": 68.00,
+    "size": "XS",
+    "quantity": 94,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Blouse Red",
+    "description": "Blouse in M size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Blouses",
+    "image": "https://static.sinsay.com/media/catalog/product/cache/1200/a4e40ebdc3e371adff845072e1c73f37/3/8/3881Z-33X-050-1-909459_4.jpg",
+    "price": 89.57,
+    "size": "M",
+    "quantity": 43,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Jacket DarkBlue",
+    "description": "Jacket in M size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Jackets",
+    "image": "https://i0.wp.com/smartmaster.com.my/wp-content/uploads/2023/12/SmartMaster-Bomber-Jacket-Plain-Dark-Blue-1-.png?fit=1080%2C1080&ssl=1",
+    "price": 89.06,
+    "size": "M",
+    "quantity": 94,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Hoodie Pink",
+    "description": "Hoodie in XS size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Hoodies",
+    "image": "https://pessere.com/media/catalog/product/cache/7af54c596c9583b1b3d45b2de6b91dc3/0/1/0171.jpg",
+    "price": 48.33,
+    "size": "XS",
+    "quantity": 54,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Blouse PaleGreen",
+    "description": "Blouse in XL size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Blouses",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcVH7oBz2d_vunigkAKoW9nqxYr_hPECRx4Q&s",
+    "price": 68.75,
+    "size": "XL",
+    "quantity": 82,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Jacket MediumSlateBlue",
+    "description": "Jacket in XL size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Jackets",
+    "image": "https://www.goodwillfinds.com/dw/image/v2/BGVZ_PRD/on/demandware.static/-/Sites-goodwill-master/default/dw92e36529/images/large/lVTjTUG9P9Py280VsJC3cs0/2022/October/13/DSCN3605.JPG?sw=537&q=65&strip=false",
+    "price": 90.26,
+    "size": "XL",
+    "quantity": 49,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Hoodie LightCyan",
+    "description": "Hoodie in S size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Hoodies",
+    "image": "https://www.merchology.com/cdn/shop/products/L407-Light-Cyan-Blue-B_1024x1024.jpg?v=1569232612",
+    "price": 67.35,
+    "size": "S",
+    "quantity": 79,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Hoodie ForestGreen",
+    "description": "Hoodie in M size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Hoodies",
+    "image": "https://gildan.se/sites/default/files/styles/product-node/public/_0005_18500-033033_c1_0.jpg?itok=F19dMAiL",
+    "price": 13.30,
+    "size": "M",
+    "quantity": 50,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Jacket PaleGoldenRod",
+    "description": "Jacket in L size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Jackets",
+    "image": "https://i.etsystatic.com/35291489/r/il/46fc01/5299532245/il_300x300.5299532245_qez2.jpg",
+    "price": 77.56,
+    "size": "L",
+    "quantity": 94,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Jacket MistyRose",
+    "description": "Jacket in M size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Jackets",
+    "image": "https://spiritclothing.ie/cdn/shop/files/ONLY_Autumnwinter_4294489_15301325.jpg?v=1694102528",
+    "price": 25.19,
+    "size": "M",
+    "quantity": 99,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Jacket Orange",
+    "description": "Jacket in XS size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Jackets",
+    "image": "https://www.andyandevan.com/cdn/shop/files/F23SP01-ORANGE-FRONT.jpg?v=1695313037",
+    "price": 63.20,
+    "size": "XS",
+    "quantity": 39,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Jacket Lime",
+    "description": "Jacket in M size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Jackets",
+    "image": "https:\/\/www.lorempixel.com\/107\/474",
+    "price": 59.18,
+    "size": "M",
+    "quantity": 48,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Trousers Crimson",
+    "description": "Trousers in XS size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Trousers",
+    "image": "https://trojansport.pl/media/products/6839add65bdc03221583927895b79e78/images/thumbnail/large_kurtka-head-supershape-lime-821754-lm-2025-1.jpg?lm=1727173774",
+    "price": 91.61,
+    "size": "XS",
+    "quantity": 64,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Trousers SkyBlue",
+    "description": "Trousers in S size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Trousers",
+    "image": "https://catchmelabel.com/cdn/shop/files/Image10283.jpg?v=1721282517&width=3000",
+    "price": 34.99,
+    "size": "S",
+    "quantity": 100,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Coat SpringGreen",
+    "description": "Coat in XL size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Coats",
+    "image": "https://mobile.yoox.com/images/items/16/16294997SC_14_f.jpg?impolicy=crop&width=387&height=490",
+    "price": 51.60,
+    "size": "XL",
+    "quantity": 20,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Trousers DarkSlateBlue",
+    "description": "Trousers in XL size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Trousers",
+    "image": "https://cdn11.bigcommerce.com/s-vspt61dziw/images/stencil/3000x3000/products/1540/14171/TheFold_Alzira_Straight_Flared_Trousers_Dark_Slate_Blue_Wool_Twill_DT284_2408_1_v4__04128.1721729551.jpg?c=1",
+    "price": 98.54,
+    "size": "XL",
+    "quantity": 42,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Jeans MediumPurple",
+    "description": "Jeans in XS size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Jeans",
+    "image": "https://img01.ztat.net/article/spp-media-p1/7c6d8b4b40c64ea48260f57b97241939/d0cfcfe5db404f6ab75749fde3f18810.jpg?imwidth=762&filter=packshot",
+    "price": 94.05,
+    "size": "XS",
+    "quantity": 87,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Blouse NavajoWhite",
+    "description": "Blouse in M size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Blouses",
+    "image": "https://img01.ztat.net/article/spp-media-p1/fb26f246ca3c3677bb7d3703a6cbe613/a8da0e9a82104136a8d39df2ca931ce8.jpg?imwidth=762&filter=packshot",
+    "price": 96.02,
+    "size": "M",
+    "quantity": 3,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Socks Snow",
+    "description": "Socks in XL size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Socks",
+    "image": "https://static1.sklephello.pl/pol_pl_Skarpetki-Happy-Socks-Snow-SSNO01-6500-9447_1.jpg",
+    "price": 70.92,
+    "size": "XL",
+    "quantity": 64,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Jeans WhiteSmoke",
+    "description": "Jeans in S size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Jeans",
+    "image": "https://img01.ztat.net/article/spp-media-p1/aece24b9c3c640f8884905d5973d5d3c/0d2e01329aa8465d83b9b1b1d64b5f01.jpg?imwidth=762&filter=packshot",
+    "price": 56.89,
+    "size": "S",
+    "quantity": 79,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Jeans Peru",
+    "description": "Jeans in XL size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Jeans",
+    "image": "https://img01.ztat.net/article/spp-media-p1/7afa146e454a4ee7824a8577df291fc3/b10b147e082146eeaeeab4958891e873.jpg?imwidth=1800&filter=packshot",
+    "price": 16.28,
+    "size": "XL",
+    "quantity": 63,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Blouse DarkOrchid",
+    "description": "Blouse in XS size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Blouses",
+    "image": "https:\/\/dummyimage.com\/40x550",
+    "price": 53.63,
+    "size": "XS",
+    "quantity": 7,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Coat LawnGreen",
+    "description": "Coat in XS size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Coats",
+    "image": "https://img01.ztat.net/article/spp-media-p1/34783116c62540c2aa83e2679679eead/8ba01685bd5d44949d0a81398885ef77.jpg?imwidth=762&filter=packshot",
+    "price": 39.34,
+    "size": "XS",
+    "quantity": 91,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Jeans DarkSlateBlue",
+    "description": "Jeans in L size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Jeans",
+    "image": "https://img01.ztat.net/article/spp-media-p1/7b8be51a07293be7b9ebf89b0b731152/7f9361413ac44235a4506b474f8ffe33.jpg?imwidth=762&filter=packshot",
+    "price": 71.78,
+    "size": "L",
+    "quantity": 69,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Socks Tomato",
+    "description": "Socks in M size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Socks",
+    "image": "https:\/\/dummyimage.com\/455x565",
+    "price": 16.57,
+    "size": "M",
+    "quantity": 30,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Hoodie DarkSlateGray",
+    "description": "Hoodie in L size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Hoodies",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOItsiJrXrscZ8WtZ4lwBqI4OchuWQN0WFwg&s",
+    "price": 42.91,
+    "size": "L",
+    "quantity": 75,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Hoodie GoldenRod",
+    "description": "Hoodie in L size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Hoodies",
+    "image": "https://i.snbz.cz/products/442x442/shop1/technicka-mikina-burton-kids-oak-pullover-hoodie-goldenrod-heather-5.jpeg",
+    "price": 39.57,
+    "size": "L",
+    "quantity": 25,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "T-shirt WhiteSmoke",
+    "description": "T-shirt in M size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "T-shirts",
+    "image": "https://www.ladoublej.com/dw/image/v2/AAGA_PRD/on/demandware.static/-/Sites-11/default/dwd7622a15/images/zoom/TSH0035EMB006SOLID_WH02_5.jpg?sw=400&sh=508&sm=fit&strip=false&q=100",
+    "price": 11.10,
+    "size": "M",
+    "quantity": 34,
+    "reviews": [
+    ]
+  },
+  {
+    "title": "Jeans LightBlue",
+    "description": "Jeans in XL size, crafted from high-quality materials and designed for comfort and style. Ideal for any occasion.",
+    "category": "Jeans",
+    "image": "https://img01.ztat.net/article/spp-media-p1/385b0156f0774d379223671956c1ecb5/3d073e573b1f4603931255ba53c375d1.jpg?imwidth=762&filter=packshot",
+    "price": 70.51,
+    "size": "XL",
+    "quantity": 64,
+    "reviews": [
+    ]
+  }
 ]

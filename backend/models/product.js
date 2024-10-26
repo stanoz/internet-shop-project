@@ -29,6 +29,10 @@ const ProductSchema = new Schema({
         required: true,
         index: true,
     },
+    quantity: {
+        type: Number,
+        required: true,
+    },
     reviews: {
         type: [{
             author: {
