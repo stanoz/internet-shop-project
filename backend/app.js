@@ -1,5 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 
 const userRoutes = require('./routes/user')
 const productRoutes = require('./routes/product')
@@ -10,6 +11,10 @@ const mongoose = require('mongoose')
 
 const app = express();
 
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}))
 app.use(express.json())
 app.use(cookieParser())
 
