@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export function fetchProducts({signal}) {
-    const response = axios.get('.products/get-all', {signal})
-    return response.data;
+export async function fetchProducts({signal}) {
+    const response = await axios.get('http://localhost:3000/products/get-all', {signal})
+    return await response.json();
 }
