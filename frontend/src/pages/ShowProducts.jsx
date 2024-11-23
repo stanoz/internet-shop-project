@@ -5,7 +5,7 @@ import Product from "../components/Product.jsx";
 import ErrorPage from "./ErrorPage.jsx";
 
 export default function ShowProducts() {
-    const {error, data, isPending, isLoading, isError, isSuccess} = useQuery({
+    const {error, data, isLoading, isError, isSuccess} = useQuery({
         queryKey:['products'],
         queryFn: ({signal}) => fetchProducts({signal})
     })
@@ -13,7 +13,7 @@ export default function ShowProducts() {
     return (
         <>
             {isError && <ErrorPage error={error}/>}
-            {(isPending || isLoading) && <LoadingIndicator />}
+            {isLoading && <LoadingIndicator />}
             {isSuccess && (
                 <ul>
                     {data.map(product => (

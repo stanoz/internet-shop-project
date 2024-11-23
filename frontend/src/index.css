@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-lds-ring div {
+.lds-ring div {
     box-sizing: border-box;
     display: block;
     position: absolute;
