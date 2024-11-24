@@ -4,7 +4,7 @@ exports.getAll = async (req, res, next) => {
     try {
         const categories = await Category.find()
 
-        if (Array.isArray(categories) && categories.lenght > 0) {
+        if (Array.isArray(categories) && categories.length > 0) {
             return res.status(200).json({
                 message: 'success',
                 data: categories,
