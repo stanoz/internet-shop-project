@@ -15,7 +15,7 @@ export default function ShowProducts() {
             {isError && <ErrorPage error={error}/>}
             {isLoading && <LoadingIndicator />}
             {isSuccess && (
-                <ul>
+                <ul className='flex flex-wrap justify-center'>
                     {data.map(product => (
                         <li key={product._id}><Product product={product}/></li>
                     ))}

@@ -14,5 +14,5 @@ export async function fetchProducts({signal}) {
     throw {
         status: response.status,
         message: response.statusText
-    };
+    }
 }
