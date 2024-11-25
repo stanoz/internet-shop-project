@@ -11,17 +11,17 @@ export default function Categories() {
     })
 
     return (
-        <>
+        <div className='absolute'>
             {isError && <ErrorPage error={error}/>}
             {isLoading && <LoadingIndicator />}
             {isSuccess && (
                 <ul className='flex flex-wrap justify-center'>
                     {data.map(category => (
-                        <li className='mx-3 text-2xl'
+                        <li className='mx-3 text-2xl font-semibold text-zinc-900 hover:border-b-2 hover:border-cyan-300'
                             key={category._id}><Button>{category.name}</Button></li>
                     ))}
                 </ul>
             )}
-        </>
+        </div>
     )
 }
