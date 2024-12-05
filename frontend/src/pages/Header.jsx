@@ -12,7 +12,7 @@ export default function Header() {
                     <h1 className="text-2xl font-bold text-blue-500">Clothes Shop</h1>
 
                 </div>
-                <div className="md:col-span-2 order-2 md:order-1 flex justify-end">
+                <div className="md:col-span-3 order-2 flex justify-center mb-1">
                     <SearchBar/>
                 </div>
                 <div
