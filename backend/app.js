@@ -8,6 +8,7 @@ const adminRoutes = require('./routes/admin')
 const categoryRoutes = require('./routes/category')
 
 const mongoose = require('mongoose')
+const authenticate = require("./security/authenticateJWT");
 
 const app = express();
 
@@ -20,7 +21,7 @@ app.use(cookieParser())
 
 app.use('/products', productRoutes)
 app.use('/users', userRoutes)
-app.use('/admin', adminRoutes)
+app.use('/admin',authenticate, adminRoutes)
 app.use('/category', categoryRoutes)
 
 mongoose.connect('mongodb://user:password@localhost:27017/mongo_internet_shop', {})

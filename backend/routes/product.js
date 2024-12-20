@@ -8,6 +8,6 @@ router.get('/get-all', productController.getAll)
 
 router.get('/get-product/:productId', productController.getProduct)
 
-router.get('/add-sample-products', exceptionHandler, productController.addSampleProducts)
+router.post('/add-sample-products', exceptionHandler, productController.addSampleProducts)
 
 module.exports = router
