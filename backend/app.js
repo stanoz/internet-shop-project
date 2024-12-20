@@ -9,6 +9,7 @@ const categoryRoutes = require('./routes/category')
 
 const mongoose = require('mongoose')
 const authenticate = require("./security/authenticateJWT");
+const exceptionHandler = require("./utils/exception-handler");
 
 const app = express();
 
@@ -19,9 +20,10 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 
+app.use('/', exceptionHandler)
 app.use('/products', productRoutes)
 app.use('/users', userRoutes)
-app.use('/admin',authenticate, adminRoutes)
+app.use('/admin', authenticate, adminRoutes)
 app.use('/category', categoryRoutes)
 
 mongoose.connect('mongodb://user:password@localhost:27017/mongo_internet_shop', {})

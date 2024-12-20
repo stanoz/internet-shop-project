@@ -21,7 +21,7 @@ router.post('/login', [
             minSymbols: 1,
             minUppercase: 1,
         }),
-], exceptionHandler, userController.login)
+], userController.login)
 
 router.post('/register', [
     check('name')
@@ -58,6 +58,8 @@ router.post('/register', [
     check('isAdmin')
         .isBoolean().withMessage('isAdmin must be set to true or false!')
 
-], exceptionHandler, userController.register)
+], userController.register)
+
+router.post('/logout', userController.logout)
 
 module.exports = router

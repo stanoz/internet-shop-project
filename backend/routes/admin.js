@@ -6,16 +6,16 @@ const {categoryValidationRules} = require('./validators/category-validator')
 const exceptionHandler = require('../utils/exception-handler')
 const authenticate = require('../security/authenticateJWT')
 
-router.post('/add-product', productValidationRules(), exceptionHandler, adminController.addProduct)
+router.post('/add-product', productValidationRules(), adminController.addProduct)
 
-router.post('/edit-product/:productId', productValidationRules(), exceptionHandler, adminController.editProduct)
+router.post('/edit-product/:productId', productValidationRules(), adminController.editProduct)
 
-router.delete('/delete-product/:productId', exceptionHandler, adminController.deleteProduct)
+router.delete('/delete-product/:productId', adminController.deleteProduct)
 
-router.post('/add-category', categoryValidationRules(), exceptionHandler, adminController.addCategory)
+router.post('/add-category', categoryValidationRules(), adminController.addCategory)
 
-router.post('/edit-category/:categoryId', categoryValidationRules(), exceptionHandler, adminController.editCategory)
+router.post('/edit-category/:categoryId', categoryValidationRules(), adminController.editCategory)
 
-router.delete('/delete-category/:categoryId', exceptionHandler, adminController.deleteProduct)
+router.delete('/delete-category/:categoryId', adminController.deleteProduct)
 
 module.exports = router

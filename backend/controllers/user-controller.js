@@ -64,7 +64,7 @@ exports.register = async (req, res, next) => {
     const user = req.body
 
     try {
-        const userCheck = await User.exists(user.email)
+        const userCheck = await User.exists({email: user.email})
         if (userCheck) {
             throw new Error("This email is already taken!")
         }
@@ -81,6 +81,15 @@ exports.register = async (req, res, next) => {
     } catch (err) {
         res.status(409).json({message: err.message})
     }
+}
+
+exports.logout = async (req, res, next) => {
+    if (!req.cookies.token) {
+        return res.status(401).json({message:"There is no token"})
+    }
+
+    res.clearCookie('token', {path: '/'})
+    res.status(200).json({message: "User logout successfully"})
 }
 
 exports.populateDb = async (req, res, next) => {
