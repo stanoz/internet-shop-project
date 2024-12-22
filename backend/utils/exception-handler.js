@@ -6,6 +6,10 @@ const exceptionHandler = (req, res, next, err) => {
         return res.status(422).json({message: errors.array()})
     }
 
+    if (err) {
+        return res.status(409).json({message: err})
+    }
+
     next()
 }
 

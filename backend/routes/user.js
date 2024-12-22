@@ -63,6 +63,6 @@ router.post('/register', [
 
 router.post('/logout', userController.logout)
 
-router.put('/edit-profile/:id',authenticate, userValidationRules ,userController.editProfile)
+router.put('/edit-profile/:id', authenticate, userValidationRules, userController.editProfile)
 
 module.exports = router

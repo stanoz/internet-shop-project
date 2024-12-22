@@ -36,4 +36,4 @@ const userValidationRules = [
         .isBoolean().withMessage('isAdmin must be set to true or false!'),
 ];
 
-module.exports = { userValidationRules };
+module.exports = { userValidationRules }
