@@ -85,11 +85,37 @@ exports.register = async (req, res, next) => {
 
 exports.logout = async (req, res, next) => {
     if (!req.cookies.token) {
-        return res.status(401).json({message:"There is no token"})
+        return res.status(401).json({message: "There is no token"})
     }
 
     res.clearCookie('token', {path: '/'})
     res.status(200).json({message: "User logout successfully"})
+}
+
+exports.editProfile = async (req, res, next) => {
+    const id = req.params.id;
+
+    const userFromDb = await User.findById(id);
+    if (!userFromDb) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (userFromDb.email !== req.user.email && req.user.email !== 'admin@example.com') {
+        return res.status(403).json({ message: 'Permission to update user denied' });
+    }
+
+    const updatedUser = { ...req.body };
+    if (req.body.password) {
+        updatedUser.password = await bcrypt.hash(req.body.password, SALT_ROUNDS);
+    }
+
+    const user = await User.findOneAndUpdate({_id: id}, updatedUser, { new: true });
+    if (!user) {
+        return res.status(409).json({ message: 'Failed to update user' });
+    }
+
+    res.status(200).json({ message: 'User updated successfully'});
+
 }
 
 exports.populateDb = async (req, res, next) => {
