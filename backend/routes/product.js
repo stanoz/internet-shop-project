@@ -1,6 +1,6 @@
 const express = require('express')
 const productController = require('../controllers/product-controller')
-const exceptionHandler = require('../utils/exception-handler')
+const exceptionHandler = require('../utils/validation-exception-handler')
 
 const router = express.Router()
 

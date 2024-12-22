@@ -9,7 +9,7 @@ const categoryRoutes = require('./routes/category')
 
 const mongoose = require('mongoose')
 const authenticate = require("./security/authenticateJWT");
-const exceptionHandler = require("./utils/exception-handler");
+const exceptionHandler = require("./utils/validation-exception-handler");
 
 const app = express();
 

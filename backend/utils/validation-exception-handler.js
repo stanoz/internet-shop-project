@@ -1,16 +1,13 @@
 const { validationResult } = require('express-validator')
 
-const exceptionHandler = (req, res, next, err) => {
+const validationExceptionHandler = (req, res, next) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()){
         return res.status(422).json({message: errors.array()})
     }
 
-    if (err) {
-        return res.status(409).json({message: err})
-    }
 
     next()
 }
 
-module.exports = exceptionHandler
+module.exports = validationExceptionHandler
