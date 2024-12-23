@@ -2,6 +2,7 @@ const Product = require('../models/product');
 const Category = require('../models/category')
 const User = require('../models/user')
 const Discount = require('../models/discount')
+const Promotion = require('../models/promotion')
 
 exports.addProduct = async (req, res, next) => {
     const newProduct = req.body
@@ -274,6 +275,81 @@ exports.deleteDiscount = async (req, res, next) => {
         await Discount.findByIdAndDelete({_id: id})
 
         res.status(204).json({message: 'Discount deleted successfully!'})
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.addPromotion = async (req, res, next) => {
+    if (req.user.email !== 'admin@example.com') {
+        return res.status(403).json({message: 'Permission add new promotion denied'});
+    }
+
+    const newPromotion = req.body
+    try {
+        const promotionCheck = await Promotion.exists({name: newPromotion.name})
+
+        if (promotionCheck) {
+            return res.status(400).json({message: 'Promotion already exists!'})
+        }
+
+        const promotionToDb = new Promotion(newPromotion)
+        await promotionToDb.save()
+
+        res.status(201).json({message: 'Promotion created!'})
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.editPromotion = async (req, res, next) => {
+    if (req.user.email !== 'admin@example.com') {
+        return res.status(403).json({message: 'Permission to edit promotion denied'});
+    }
+
+    const id = req.params.promotionId || null
+    const editedPromotion = req.body
+
+    if (id === null) {
+        return res.status(400).json({message: 'Invalid id!'})
+    }
+
+    try {
+        const promotionCheck = await Promotion.exists({_id: id})
+
+        if (!promotionCheck) {
+            return res.status(404).json({message: 'Promotion not found!'})
+        }
+
+        await Promotion.findByIdAndUpdate(id, editedPromotion, {new: true,})
+
+        res.status(200).json({message: 'Promotion updated successfully!'})
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.deletePromotion = async (req, res, next) => {
+    if (req.user.email !== 'admin@example.com') {
+        return res.status(403).json({message: 'Permission to delete promotion denied'});
+    }
+
+    const id = req.params.promotionId || null
+
+    if (id === null) {
+        return res.status(400).json({message: 'Invalid id!'})
+    }
+
+    try {
+
+        const promotionCheck = await Promotion.exists({_id: id})
+        if (!promotionCheck) {
+            return res.status(404).json({message: 'Promotion not found!'})
+        }
+
+        await Promotion.findByIdAndDelete({_id: id})
+
+        res.status(204).json({message: 'Promotion deleted successfully!'})
     } catch (err) {
         next(err)
     }
