@@ -33,7 +33,12 @@ exports.addProduct = async (req, res, next) => {
 }
 
 exports.editProduct = async (req, res, next) => {
-    const newProduct = req.body
+
+    if (req.user.email !== 'admin@example.com') {
+        return res.status(403).json({message: 'Permission to edit product denied'});
+    }
+
+    const editProduct = req.body
     const id = req.params.productId || null
 
     if (id === null) {
@@ -41,18 +46,26 @@ exports.editProduct = async (req, res, next) => {
     }
 
     try {
-        const productCheck = await Product.exists(id)
+        const productCheck = await Product.exists({_id: id})
 
         if (!productCheck) {
             return res.status(404).json({message: 'Product not found!'})
         }
 
-        await Product.findByIdAndUpdate(id, newProduct, {
-            new: true,
-            runValidators: true,
-        })
+        if (editProduct.category) {
+            let category = await Category.findOne({name: editProduct.category});
 
-        res.status(204).json({message: 'Product updated successfully!'})
+            if (!category) {
+                category = new Category({name: editProduct.category});
+                await category.save();
+            }
+
+            editProduct.category = category._id;
+        }
+
+        await Product.findByIdAndUpdate(id, editProduct, {new: true})
+
+        res.status(200).json({message: 'Product updated successfully!'})
 
     } catch (err) {
         next(err)
@@ -60,6 +73,10 @@ exports.editProduct = async (req, res, next) => {
 }
 
 exports.deleteProduct = async (req, res, next) => {
+    if (req.user.email !== 'admin@example.com') {
+        return res.status(403).json({message: 'Permission to add new product denied'});
+    }
+
     const id = req.params.productId || null
 
     if (id === null) {
@@ -67,13 +84,13 @@ exports.deleteProduct = async (req, res, next) => {
     }
 
     try {
-        const productCheck = await Product.exists(id)
+        const productCheck = await Product.exists({_id: id})
 
         if (!productCheck) {
             return res.status(404).json({message: 'Product not found!'})
         }
 
-        await Product.findByIdAndDelete(id)
+        await Product.findByIdAndDelete({_id: id})
 
         res.status(204).json({message: 'Product deleted successfully!'})
     } catch (err) {
