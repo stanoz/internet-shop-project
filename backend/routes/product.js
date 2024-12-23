@@ -5,6 +5,8 @@ const router = express.Router()
 
 router.get('/get-all', productController.getAll)
 
+router.get('/search', productController.searchProducts)
+
 router.get('/get-product/:productId', productController.getProduct)
 
 router.post('/add-sample-products', productController.addSampleProducts)
