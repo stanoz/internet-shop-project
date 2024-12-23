@@ -8,6 +8,7 @@ const adminRoutes = require('./routes/admin')
 const categoryRoutes = require('./routes/category')
 const discountRoutes = require('./routes/discount')
 const promotionRoutes = require('./routes/promotion')
+const cartRoutes = require('./routes/cart')
 const globalErrorHandler = require('./utils/global-error-handler')
 
 const mongoose = require('mongoose')
@@ -28,6 +29,7 @@ app.use('/admin', authenticate, adminRoutes)
 app.use('/category', categoryRoutes)
 app.use('/discount', discountRoutes)
 app.use('/promotion', promotionRoutes)
+app.use('/cart', cartRoutes)
 
 app.use(globalErrorHandler.errorHandler)
 
