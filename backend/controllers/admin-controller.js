@@ -1,5 +1,6 @@
 const Product = require('../models/product');
 const Category = require('../models/category')
+const User = require('../models/user')
 
 exports.addProduct = async (req, res, next) => {
     const newProduct = req.body
@@ -14,10 +15,10 @@ exports.addProduct = async (req, res, next) => {
             return res.status(400).json({message: 'Product already exists!'})
         }
 
-        let category = await Category.findOne({ name: newProduct.category });
+        let category = await Category.findOne({name: newProduct.category});
 
         if (!category) {
-            category = new Category({ name: newProduct.category });
+            category = new Category({name: newProduct.category});
             await category.save();
         }
 
@@ -171,6 +172,32 @@ exports.deleteCategory = async (req, res, next) => {
         await Category.findByIdAndDelete({_id: id})
 
         res.status(204).json({message: 'Category deleted successfully!'})
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.deleteUser = async (req, res, next) => {
+    if (req.user.email !== 'admin@example.com') {
+        return res.status(403).json({message: 'Permission to delete user denied'});
+    }
+
+    const id = req.params.userId || null
+
+    if (id === null) {
+        return res.status(400).json({message: 'Invalid id!'})
+    }
+
+    try {
+
+        const userCheck = await User.exists({_id: id})
+        if (!userCheck) {
+            return res.status(404).json({message: 'User not found!'})
+        }
+
+        await User.findByIdAndDelete({_id: id})
+
+        res.status(204).json({message: 'User deleted successfully!'})
     } catch (err) {
         next(err)
     }

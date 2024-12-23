@@ -71,7 +71,8 @@ exports.register = async (req, res, next) => {
 
         const userToDb = new User({
             ...user,
-            password: await bcrypt.hash(user.password, SALT_ROUNDS)
+            password: await bcrypt.hash(user.password, SALT_ROUNDS),
+            isAdmin: false
         })
 
         await userToDb.save()
@@ -104,6 +105,10 @@ exports.editProfile = async (req, res, next) => {
 
         if (userFromDb.email !== req.user.email && req.user.email !== 'admin@example.com') {
             return res.status(403).json({message: 'Permission to update user denied'});
+        }
+
+        if (req.body.isAdmin && req.user.email !== 'admin@example.com') {
+            return res.status(403).json({message: "Permission to update user's role denied"});
         }
 
         const filteredBody = Object.fromEntries(

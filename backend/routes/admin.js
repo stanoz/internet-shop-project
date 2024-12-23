@@ -17,4 +17,6 @@ router.put('/edit-category/:categoryId', categoryValidationRules, validationExce
 
 router.delete('/delete-category/:categoryId', adminController.deleteCategory)
 
+router.delete('/delete-user/:userId', adminController.deleteUser)
+
 module.exports = router
