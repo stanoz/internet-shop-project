@@ -1,6 +1,7 @@
 const Product = require('../models/product');
 const Category = require('../models/category')
 const User = require('../models/user')
+const Discount = require('../models/discount')
 
 exports.addProduct = async (req, res, next) => {
     const newProduct = req.body
@@ -198,6 +199,81 @@ exports.deleteUser = async (req, res, next) => {
         await User.findByIdAndDelete({_id: id})
 
         res.status(204).json({message: 'User deleted successfully!'})
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.addDiscount = async (req, res, next) => {
+    if (req.user.email !== 'admin@example.com') {
+        return res.status(403).json({message: 'Permission add new discount denied'});
+    }
+
+    const newDiscount = req.body
+    try {
+        const discountCheck = await Discount.exists({name: newDiscount.name})
+
+        if (discountCheck) {
+            return res.status(400).json({message: 'Discount already exists!'})
+        }
+
+        const discountToDb = new Discount(newDiscount)
+        await discountToDb.save()
+
+        res.status(201).json({message: 'Discount created!'})
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.editDiscount = async (req, res, next) => {
+    if (req.user.email !== 'admin@example.com') {
+        return res.status(403).json({message: 'Permission to edit discount denied'});
+    }
+
+    const id = req.params.discountId || null
+    const editedDiscount = req.body
+
+    if (id === null) {
+        return res.status(400).json({message: 'Invalid id!'})
+    }
+
+    try {
+        const discountCheck = await Discount.exists({_id: id})
+
+        if (!discountCheck) {
+            return res.status(404).json({message: 'Discount not found!'})
+        }
+
+        await Discount.findByIdAndUpdate(id, editedDiscount, {new: true,})
+
+        res.status(200).json({message: 'Discount updated successfully!'})
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.deleteDiscount = async (req, res, next) => {
+    if (req.user.email !== 'admin@example.com') {
+        return res.status(403).json({message: 'Permission to delete discount denied'});
+    }
+
+    const id = req.params.discountId || null
+
+    if (id === null) {
+        return res.status(400).json({message: 'Invalid id!'})
+    }
+
+    try {
+
+        const discountCheck = await Discount.exists({_id: id})
+        if (!discountCheck) {
+            return res.status(404).json({message: 'Discount not found!'})
+        }
+
+        await Discount.findByIdAndDelete({_id: id})
+
+        res.status(204).json({message: 'Discount deleted successfully!'})
     } catch (err) {
         next(err)
     }

@@ -4,6 +4,7 @@ const adminController = require('../controllers/admin-controller')
 const {addProductValidationRules, editProductValidationRules} = require('./validators/product-validator')
 const {categoryValidationRules} = require('./validators/category-validator')
 const validationExceptionHandler = require('../utils/validation-exception-handler')
+const {addDiscountValidator, editDiscountValidator} = require("./validators/discount-validator");
 
 router.post('/add-product', addProductValidationRules, validationExceptionHandler, adminController.addProduct)
 
@@ -18,5 +19,11 @@ router.put('/edit-category/:categoryId', categoryValidationRules, validationExce
 router.delete('/delete-category/:categoryId', adminController.deleteCategory)
 
 router.delete('/delete-user/:userId', adminController.deleteUser)
+
+router.post('/add-discount', addDiscountValidator, validationExceptionHandler, adminController.addDiscount)
+
+router.put('/edit-discount/:discountId', editDiscountValidator, validationExceptionHandler, adminController.editDiscount)
+
+router.delete('/delete-discount/:discountId', adminController.deleteDiscount)
 
 module.exports = router

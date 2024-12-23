@@ -2,7 +2,7 @@ const Category = require('../models/category')
 
 exports.getAll = async (req, res, next) => {
     try {
-        const categories = await Category.find()
+        const categories = await Category.find().lean()
 
         if (Array.isArray(categories) && categories.length > 0) {
             return res.status(200).json({
