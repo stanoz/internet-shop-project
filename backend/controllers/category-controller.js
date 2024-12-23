@@ -13,6 +13,6 @@ exports.getAll = async (req, res, next) => {
 
         return res.status(404).json({message: 'Categories not found!'})
     } catch (err) {
-        res.status(409).json({message: err.message})
+        next(err)
     }
 }

@@ -15,7 +15,7 @@ exports.addProduct = async (req, res, next) => {
 
         res.status(201).json({message: 'Product created!'})
     } catch (err) {
-        res.status(409).json({message: err.message})
+        next(err)
     }
 }
 
@@ -42,7 +42,7 @@ exports.editProduct = async (req, res, next) => {
         res.status(204).json({message: 'Product updated successfully!'})
 
     } catch (err) {
-        res.status(409).json({message: err.message})
+        next(err)
     }
 }
 
@@ -64,7 +64,7 @@ exports.deleteProduct = async (req, res, next) => {
 
         res.status(204).json({message: 'Product deleted successfully!'})
     } catch (err) {
-        res.status(409).json({message: err.message})
+        next(err)
     }
 }
 
@@ -82,7 +82,7 @@ exports.addCategory = async (req, res, next) => {
 
         res.status(201).json({message: 'Category created!'})
     } catch (err) {
-        res.status(409).json({message: err.message})
+        next(err)
     }
 }
 
@@ -108,7 +108,7 @@ exports.editCategory = async (req, res, next) => {
 
         res.status(204).json({message: 'Product updated successfully!'})
     } catch (err) {
-        res.status(409).json({message: err.message})
+        next(err)
     }
 }
 
@@ -130,6 +130,6 @@ exports.deleteCategory = async (req, res, next) => {
 
         res.status(204).json({message: 'Category deleted successfully!'})
     } catch (err) {
-        res.status(409).json({message: err.message})
+        next(err)
     }
 }

@@ -2,6 +2,7 @@ const Product = require('../models/product')
 const addProducts = require('../data/add-products')
 
 exports.getAll = async (req, res, next) => {
+
     try {
         const products = await Product.find().populate('category', 'name')
 
@@ -14,7 +15,7 @@ exports.getAll = async (req, res, next) => {
 
         return res.status(404).json({message: 'Products not found!'})
     } catch (err) {
-        res.status(409).json({message: err.message})
+        next(err)
     }
 }
 
@@ -37,7 +38,7 @@ exports.getProduct = async (req, res, next) => {
             data: product,
         })
     } catch (err) {
-        res.status(409).json({message: err.message})
+        next(err)
     }
 }
 
@@ -46,6 +47,6 @@ exports.addSampleProducts = async (req, res, next) => {
         await addProducts()
         res.status(201).json("Sample products added")
     } catch (err) {
-        res.status(409).json({message: err.message})
+        next(err)
     }
 }

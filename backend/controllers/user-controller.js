@@ -95,32 +95,36 @@ exports.logout = async (req, res, next) => {
 exports.editProfile = async (req, res, next) => {
     const id = req.params.id;
 
-    const userFromDb = await User.findById(id).lean();
-    if (!userFromDb) {
-        return res.status(404).json({message: 'User not found'});
+    try {
+        const userFromDb = await User.findById(id).lean();
+
+        if (!userFromDb) {
+            return res.status(404).json({message: 'User not found'});
+        }
+
+        if (userFromDb.email !== req.user.email && req.user.email !== 'admin@example.com') {
+            return res.status(403).json({message: 'Permission to update user denied'});
+        }
+
+        const filteredBody = Object.fromEntries(
+            Object.entries(req.body).filter(([key, value]) => value)
+        );
+
+        const updatedUser = {...userFromDb, ...filteredBody}
+
+        if (filteredBody.password) {
+            updatedUser.password = await bcrypt.hash(filteredBody.password, SALT_ROUNDS);
+        }
+
+        const user = await User.findOneAndUpdate({_id: id}, {...updatedUser}, {new: true});
+        if (!user) {
+            return res.status(409).json({message: 'Failed to update user'});
+        }
+
+        res.status(200).json({message: 'User updated successfully'});
+    } catch (err) {
+        next(err)
     }
-
-    if (userFromDb.email !== req.user.email && req.user.email !== 'admin@example.com') {
-        return res.status(403).json({message: 'Permission to update user denied'});
-    }
-
-    const filteredBody = Object.fromEntries(
-        Object.entries(req.body).filter(([key, value]) => value)
-    );
-
-    const updatedUser = {...userFromDb, ...filteredBody}
-
-    if (filteredBody.password) {
-        updatedUser.password = await bcrypt.hash(filteredBody.password, SALT_ROUNDS);
-    }
-
-    const user = await User.findOneAndUpdate({_id: id}, {...updatedUser}, {new: true});
-    if (!user) {
-        return res.status(409).json({message: 'Failed to update user'});
-    }
-
-    res.status(200).json({message: 'User updated successfully'});
-
 }
 
 exports.populateDb = async (req, res, next) => {
@@ -128,6 +132,6 @@ exports.populateDb = async (req, res, next) => {
         await populateDb()
         res.status(201).json("Db populated")
     } catch (err) {
-        res.status(409).json({message: err.message});
+        next(err)
     }
 }

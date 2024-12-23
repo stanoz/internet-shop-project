@@ -6,10 +6,10 @@ const userRoutes = require('./routes/user')
 const productRoutes = require('./routes/product')
 const adminRoutes = require('./routes/admin')
 const categoryRoutes = require('./routes/category')
+const globalErrorHandler = require('./utils/global-error-handler')
 
 const mongoose = require('mongoose')
 const authenticate = require("./security/authenticateJWT");
-const exceptionHandler = require("./utils/validation-exception-handler");
 
 const app = express();
 
@@ -20,11 +20,12 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 
-app.use('/', exceptionHandler)
 app.use('/products', productRoutes)
 app.use('/users', userRoutes)
 app.use('/admin', authenticate, adminRoutes)
 app.use('/category', categoryRoutes)
+
+app.use(globalErrorHandler.errorHandler)
 
 mongoose.connect('mongodb://user:password@localhost:27017/mongo_internet_shop', {})
     .then(async () => {
