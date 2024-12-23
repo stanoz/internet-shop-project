@@ -11,7 +11,7 @@ exports.addProduct = async (req, res, next) => {
 
         const productCheck = await Product.exists({title: newProduct.title})
         if (productCheck) {
-            return res.status(409).json({message: 'Product already exists!'})
+            return res.status(400).json({message: 'Product already exists!'})
         }
 
         let category = await Category.findOne({ name: newProduct.category });
@@ -74,7 +74,7 @@ exports.editProduct = async (req, res, next) => {
 
 exports.deleteProduct = async (req, res, next) => {
     if (req.user.email !== 'admin@example.com') {
-        return res.status(403).json({message: 'Permission to add new product denied'});
+        return res.status(403).json({message: 'Permission to delete product denied'});
     }
 
     const id = req.params.productId || null
@@ -99,12 +99,16 @@ exports.deleteProduct = async (req, res, next) => {
 }
 
 exports.addCategory = async (req, res, next) => {
+    if (req.user.email !== 'admin@example.com') {
+        return res.status(403).json({message: 'Permission to add new category denied'});
+    }
+
     const category = req.body
     try {
-        const categoryCheck = await Category.exists(category.name)
+        const categoryCheck = await Category.exists({name: category.name})
 
-        if (!categoryCheck) {
-            return res.status(404).json({message: 'Category not found!'})
+        if (categoryCheck) {
+            return res.status(400).json({message: 'Category already exists!'})
         }
 
         const categoryToDb = new Category(category)
@@ -117,6 +121,10 @@ exports.addCategory = async (req, res, next) => {
 }
 
 exports.editCategory = async (req, res, next) => {
+    if (req.user.email !== 'admin@example.com') {
+        return res.status(403).json({message: 'Permission to edit category denied'});
+    }
+
     const id = req.params.categoryId || null
     const category = req.body
 
@@ -125,7 +133,7 @@ exports.editCategory = async (req, res, next) => {
     }
 
     try {
-        const categoryCheck = await Category.exists(id)
+        const categoryCheck = await Category.exists({_id: id})
 
         if (!categoryCheck) {
             return res.status(404).json({message: 'Category not found!'})
@@ -136,13 +144,17 @@ exports.editCategory = async (req, res, next) => {
             runValidators: true,
         })
 
-        res.status(204).json({message: 'Product updated successfully!'})
+        res.status(200).json({message: 'Category updated successfully!'})
     } catch (err) {
         next(err)
     }
 }
 
 exports.deleteCategory = async (req, res, next) => {
+    if (req.user.email !== 'admin@example.com') {
+        return res.status(403).json({message: 'Permission to delete category denied'});
+    }
+
     const id = req.params.categoryId || null
 
     if (id === null) {
@@ -150,13 +162,13 @@ exports.deleteCategory = async (req, res, next) => {
     }
 
     try {
-        const productCheck = await Category.exists(id)
+        const productCheck = await Category.exists({_id: id})
 
         if (!productCheck) {
             return res.status(404).json({message: 'Product not found!'})
         }
 
-        await Category.findByIdAndDelete(id)
+        await Category.findByIdAndDelete({_id: id})
 
         res.status(204).json({message: 'Category deleted successfully!'})
     } catch (err) {

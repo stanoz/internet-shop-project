@@ -11,10 +11,10 @@ router.put('/edit-product/:productId', editProductValidationRules, validationExc
 
 router.delete('/delete-product/:productId', adminController.deleteProduct)
 
-router.post('/add-category', categoryValidationRules(), adminController.addCategory)
+router.post('/add-category', categoryValidationRules, validationExceptionHandler, adminController.addCategory)
 
-router.post('/edit-category/:categoryId', categoryValidationRules(), adminController.editCategory)
+router.put('/edit-category/:categoryId', categoryValidationRules, validationExceptionHandler, adminController.editCategory)
 
-router.delete('/delete-category/:categoryId', adminController.deleteProduct)
+router.delete('/delete-category/:categoryId', adminController.deleteCategory)
 
 module.exports = router
