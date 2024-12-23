@@ -4,13 +4,16 @@ const addProducts = require('../data/add-products')
 exports.getAll = async (req, res, next) => {
 
     try {
-        const products = await Product.find().populate('category', 'name')
+        const products = await Product.find().populate('category', 'name').lean()
 
         if (Array.isArray(products) && products.length > 0) {
-            return res.status(200).json({
-                message: 'success',
-                data: products,
-            })
+            const transformedProducts = products.map(({_id, ...product}) => ({
+                ...product,
+                id: _id,
+                category: product.category.name
+            }));
+
+            return res.status(200).json({message: 'success', data: transformedProducts})
         }
 
         return res.status(404).json({message: 'Products not found!'})
@@ -27,16 +30,16 @@ exports.getProduct = async (req, res, next) => {
     }
 
     try {
-        const product = await Product.findById(id)
+        const product = await Product.findById(id).populate('category', 'name').lean()
 
         if (product === null) {
             return res.status(404).json({message: 'Product not found!'})
         }
 
-        res.status(200).json({
-            message: 'success',
-            data: product,
-        })
+        const { _id, ...rest } = product;
+        const transformedProduct = { ...rest, id: _id, category: product.category.name };
+
+        res.status(200).json({message: 'success', data: transformedProduct})
     } catch (err) {
         next(err)
     }

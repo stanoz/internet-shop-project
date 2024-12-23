@@ -3,12 +3,11 @@ const router = express.Router()
 const adminController = require('../controllers/admin-controller')
 const {productValidationRules} = require('./validators/product-validator')
 const {categoryValidationRules} = require('./validators/category-validator')
-const exceptionHandler = require('../utils/validation-exception-handler')
-const authenticate = require('../security/authenticateJWT')
+const validationExceptionHandler = require('../utils/validation-exception-handler')
 
-router.post('/add-product', productValidationRules(), adminController.addProduct)
+router.post('/add-product', productValidationRules, validationExceptionHandler, adminController.addProduct)
 
-router.post('/edit-product/:productId', productValidationRules(), adminController.editProduct)
+router.post('/edit-product/:productId', productValidationRules, validationExceptionHandler, adminController.editProduct)
 
 router.delete('/delete-product/:productId', adminController.deleteProduct)
 

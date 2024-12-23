@@ -2,15 +2,28 @@ const Product = require('../models/product');
 const Category = require('../models/category')
 
 exports.addProduct = async (req, res, next) => {
-    const product = req.body
+    const newProduct = req.body
 
     try {
-        const productCheck = await Product.exists(product.id)
+        if (req.user.email !== 'admin@example.com') {
+            return res.status(403).json({message: 'Permission to add new product denied'});
+        }
+
+        const productCheck = await Product.exists({title: newProduct.title})
         if (productCheck) {
             return res.status(409).json({message: 'Product already exists!'})
         }
 
-        const productToDb = new Product(product)
+        let category = await Category.findOne({ name: newProduct.category });
+
+        if (!category) {
+            category = new Category({ name: newProduct.category });
+            await category.save();
+        }
+
+        newProduct.category = category._id;
+
+        const productToDb = new Product(newProduct)
         await productToDb.save()
 
         res.status(201).json({message: 'Product created!'})
