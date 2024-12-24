@@ -39,19 +39,19 @@ const orderSchema = new Schema({
         },
         paymentStatus: {
             type: String,
-            enum: ['NOT PAID', 'PAID', 'FAILED'],
-            default: 'NOT PAID'
+            enum: ['NOT_PAID', 'PAID', 'FAILED'],
+            default: 'NOT_PAID'
         },
     },
     delivery: {
         method: {
             type: String,
             required: true,
-            enum: ['INPOST, DELIVERY_MAN, POST']
+            enum: ['INPOST', 'DELIVERY_MAN', 'POST']
         },
         deliveryStatus: {
             type: String,
-            enum: ['WAITING', 'IN TRANSIT', 'DELIVERED'],
+            enum: ['WAITING', 'IN_TRANSIT', 'DELIVERED'],
             default: 'WAITING'
         }
     },
@@ -75,6 +75,14 @@ const orderSchema = new Schema({
             },
         },
         required: true,
+    },
+    appliedDiscount: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Discount',
+    },
+    appliedPromotion: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Promotion',
     }
 })
 

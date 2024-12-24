@@ -1,6 +1,5 @@
 const express = require('express')
 const userController = require('../controllers/user-controller')
-const {check} = require('express-validator')
 const validationExceptionHandler = require('../utils/validation-exception-handler')
 const authenticate = require('../security/authenticateJWT')
 const {
