@@ -12,23 +12,24 @@ exports.createOrder = async (req, res, next) => {
 
         const userEmail = newOrder.user.email
         const userFromDb = await User.findOne({email: userEmail}).lean()
-        if (userFromDb) {
-            orderToDb.user = {
-                name: userFromDb.name,
-                surname: userFromDb.surname,
-                email: userEmail
-            }
-        } else {
-            orderToDb.user = {...req.body.user}
-        }
+        // if (userFromDb) {
+        //     orderToDb.user = {
+        //         name: userFromDb.name,
+        //         surname: userFromDb.surname,
+        //         email: userEmail
+        //     }
+        // } else {
+        //     orderToDb.user = {...newOrder.user}
+        // }
+        orderToDb.user = {...newOrder.user}
 
         if (userFromDb?.address) {
             orderToDb.address = {...userFromDb.address}
         } else {
-            orderToDb.address = {...req.body.address}
+            orderToDb.address = {...newOrder.address}
         }
 
-        const cart = req.body.cart
+        const cart = newOrder.cart
         const products = cart.items
         if (!products || products.length === 0) {
             return res.status(400).json({message: 'No products provided!'})
@@ -52,8 +53,8 @@ exports.createOrder = async (req, res, next) => {
         orderToDb.cart = {items: items}
 
         let promotion
-        if (req.body.appliedPromotion) {
-            promotion = await Promotion.findById({_id: req.body.appliedPromotion}).lean()
+        if (newOrder.appliedPromotion) {
+            promotion = await Promotion.findById({_id: newOrder.appliedPromotion}).lean()
             orderToDb.appliedPromotion = promotion._id
         }
 
@@ -80,15 +81,15 @@ exports.createOrder = async (req, res, next) => {
             return sum + item.price * item.quantity;
         }, 0)
 
-        if (req.body.appliedDiscount) {
-            const discount = await Discount.findById({_id: req.body.appliedDiscount}).lean()
+        if (newOrder.appliedDiscount) {
+            const discount = await Discount.findById({_id: newOrder.appliedDiscount}).lean()
             totalPrice -= discount.value
             orderToDb.appliedDiscount = discount._id
         }
 
         orderToDb.payment.price = totalPrice
 
-        orderToDb.delivery = {...req.body.delivery}
+        orderToDb.delivery = {...newOrder.delivery}
 
         await orderToDb.save()
 
