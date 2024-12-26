@@ -42,6 +42,11 @@ const orderSchema = new Schema({
             enum: ['NOT_PAID', 'PAID', 'FAILED'],
             default: 'NOT_PAID'
         },
+        method: {
+            type: String,
+            enum: ['CREDIT_CARD', 'BLIK', 'BANK_TRANSFER'],
+            required: true,
+        }
     },
     delivery: {
         method: {

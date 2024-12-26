@@ -23,6 +23,7 @@ exports.createOrder = async (req, res, next) => {
         // }
         orderToDb.user = {...newOrder.user}
 
+        //TODO:Czy to jest potrzebne?
         if (userFromDb?.address) {
             orderToDb.address = {...userFromDb.address}
         } else {
@@ -59,7 +60,7 @@ exports.createOrder = async (req, res, next) => {
         }
 
         const productIds = items.map(item => item.product)
-        const productsFromDb = await Product.find({ _id: { $in: productIds } }).populate('category', 'name').lean()
+        const productsFromDb = await Product.find({_id: {$in: productIds}}).populate('category', 'name').lean()
 
 
         const itemsWithPrices = items.map(item => {
@@ -88,8 +89,9 @@ exports.createOrder = async (req, res, next) => {
         }
 
         orderToDb.payment.price = totalPrice
+        orderToDb.payment.method = newOrder.payment.method.toUpperCase()
 
-        orderToDb.delivery = {...newOrder.delivery}
+        orderToDb.delivery.method = newOrder.delivery.method.toUpperCase()
 
         await orderToDb.save()
 
@@ -105,5 +107,29 @@ exports.editOrder = async (req, res, next) => {
 }
 
 exports.getOrder = async (req, res, next) => {
+    const orderId = req.params.orderId
 
+    if (orderId === null) {
+        return res.status(400).json({message: 'Id is invalid!'})
+    }
+
+    try {
+        const orderFromDb = await Order
+            .findById({_id: orderId})
+            .populate('cart.items.product', '-_id -quantity -reviews -__v')
+            .lean()
+
+        if (!orderFromDb) {
+            return res.status(404).json({message: 'Order not found!'})
+        }
+
+        orderFromDb.cart.items = orderFromDb.cart.items.map(item => {
+            const { _id, ...itemWithoutId } = item
+            return itemWithoutId
+        })
+
+        res.status(200).json({message: 'success', data: orderFromDb})
+    } catch (err) {
+        next(err)
+    }
 }

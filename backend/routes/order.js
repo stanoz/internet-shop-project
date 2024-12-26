@@ -9,6 +9,6 @@ router.post('/create-order', addOrderValidationRules, validationExceptionHandler
 
 router.put('/edit-order/:orderId', authenticate, orderController.editOrder)
 
-router.get('/get-order/:orderId', authenticate, orderController.getOrder)
+router.get('/get-order/:orderId', orderController.getOrder)
 
 module.exports = router
