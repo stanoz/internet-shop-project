@@ -1,4 +1,4 @@
-const { check } = require('express-validator');
+const {check} = require('express-validator');
 
 const addOrderValidationRules = [
     check('user').isObject().withMessage('User must be an object!'),
@@ -23,9 +23,6 @@ const addOrderValidationRules = [
     check('delivery.method')
         .trim().notEmpty().withMessage('Delivery method is required!')
         .isLength({min: 4, max: 12}).withMessage('Permitted values: INPOST or DELIVERY_MAN or POST'),
-    // check('delivery.status').optional()
-    //     .trim().notEmpty().withMessage('Delivery status is required!')
-    //     .isLength({max: 10}).withMessage('Permitted values: WAITING, IN_TRANSIT, DELIVERED'),
     check('address').isObject().withMessage('Address must be an object!'),
     check('address.street')
         .if(check('address').exists())
@@ -45,5 +42,24 @@ const addOrderValidationRules = [
     check('appliedPromotion').optional()
         .trim().notEmpty().withMessage('If no promotion is applied do not provide this field!')
 ]
+const editOrderValidationRules = [
+    check('orderStatus').optional()
+        .trim().notEmpty().withMessage('Order status is required!')
+        .isLength({min: 7, max: 10}).withMessage('Permitted values: PENDING, PROCESSING, SHIPPED, DELIVERED, CANCELLED'),
+    check('cart').optional()
+        .isObject().withMessage('Cart must be an object!'),
+    check('cart.items').optional()
+        .isArray({min: 1}).withMessage('Items must be and array!'),
+    check('payment').optional()
+        .isObject().withMessage('Payment must be an object!'),
+    check('payment.paymentStatus').optional()
+        .trim().notEmpty().withMessage('Payment status is required!')
+        .isLength({min: 4, max: 8}).withMessage('Permitted values: NOT_PAID, PAID, FAILED'),
+    check('delivery').optional()
+        .isObject().withMessage('Delivery must be an object!'),
+    check('delivery.deliveryStatus').optional()
+        .trim().notEmpty().withMessage('Delivery status is required!')
+        .isLength({min: 7, max: 10}).withMessage('Permitted values: WAITING, IN_TRANSIT, DELIVERED'),
+]
 
-module.exports = {addOrderValidationRules}
+module.exports = {addOrderValidationRules, editOrderValidationRules}
