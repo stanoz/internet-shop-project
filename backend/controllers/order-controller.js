@@ -11,24 +11,10 @@ exports.createOrder = async (req, res, next) => {
         const newOrder = req.body
 
         const userEmail = newOrder.user.email
-        const userFromDb = await User.findOne({email: userEmail}).lean()
-        // if (userFromDb) {
-        //     orderToDb.user = {
-        //         name: userFromDb.name,
-        //         surname: userFromDb.surname,
-        //         email: userEmail
-        //     }
-        // } else {
-        //     orderToDb.user = {...newOrder.user}
-        // }
+
         orderToDb.user = {...newOrder.user}
 
-        //TODO:Czy to jest potrzebne?
-        if (userFromDb?.address) {
-            orderToDb.address = {...userFromDb.address}
-        } else {
-            orderToDb.address = {...newOrder.address}
-        }
+        orderToDb.address = {...newOrder.address}
 
         const cart = newOrder.cart
         const products = cart.items
@@ -116,17 +102,12 @@ exports.getOrder = async (req, res, next) => {
     try {
         const orderFromDb = await Order
             .findById({_id: orderId})
-            .populate('cart.items.product', '-_id -quantity -reviews -__v')
+            .populate('cart.items.product', '-quantity -reviews -__v')
             .lean()
 
         if (!orderFromDb) {
             return res.status(404).json({message: 'Order not found!'})
         }
-
-        orderFromDb.cart.items = orderFromDb.cart.items.map(item => {
-            const { _id, ...itemWithoutId } = item
-            return itemWithoutId
-        })
 
         res.status(200).json({message: 'success', data: orderFromDb})
     } catch (err) {

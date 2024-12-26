@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const orderSchema = new Schema({
+    orderStatus: {
+        type: String,
+        enum: ['PENDING', 'PROCESSING', 'SHIPPED', 'DELIVERED', 'CANCELLED'],
+        default: 'PENDING'
+    },
     user: {
         name: {
             type: String,
