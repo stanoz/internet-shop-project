@@ -107,7 +107,7 @@ exports.addReview = async (req, res, next) => {
         }
 
         let userHasBoughtThisProduct = false
-        for (order of orders) {
+        for (const order of orders) {
             if (order.user.email === userEmail) {
                 if (order.cart.items.some(item => item.product.toString() === productId)) {
                     userHasBoughtThisProduct = true
