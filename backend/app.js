@@ -12,6 +12,7 @@ const cartRoutes = require('./routes/cart')
 const orderRoutes = require('./routes/order')
 const returnRoutes = require('./routes/return')
 const emailRoutes = require('./routes/email')
+const reportRoutes = require('./routes/report')
 const globalErrorHandler = require('./utils/global-error-handler')
 
 const mongoose = require('mongoose')
@@ -36,6 +37,7 @@ app.use('/cart', cartRoutes)
 app.use('/order', orderRoutes)
 app.use('/return', returnRoutes)
 app.use('/email', authenticate, emailRoutes)
+app.use('/report', authenticate, reportRoutes)
 
 app.use(globalErrorHandler.errorHandler)
 
