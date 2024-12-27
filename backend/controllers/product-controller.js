@@ -1,4 +1,5 @@
 const Product = require('../models/product')
+const Order = require('../models/order')
 const addProducts = require('../data/add-products')
 
 exports.getAll = async (req, res, next) => {
@@ -82,6 +83,55 @@ exports.searchProducts = async (req, res, next) => {
 
         res.status(404).json({message: 'Products not found!'})
 
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.addReview = async (req, res, next) => {
+    const productId = req.params.productId
+    if (productId === null) {
+        return res.status(400).json({message: 'Invalid id!'})
+    }
+
+    try {
+        const productFromDb = await Product.findById({_id: productId}).lean()
+        if (!productId) {
+            return res.status(404).json({message: 'Product not found!'})
+        }
+
+        const userEmail = req.body.author
+        const orders = await Order.find().lean()
+        if (!orders || orders.length === 0) {
+            throw new Error('There are no orders!')
+        }
+
+        let userHasBoughtThisProduct = false
+        for (order of orders) {
+            if (order.user.email === userEmail) {
+                if (order.cart.items.some(item => item.product.toString() === productId)) {
+                    userHasBoughtThisProduct = true
+                    break
+                }
+            }
+        }
+
+        if (!userHasBoughtThisProduct) {
+            return res.status(400).json({message: 'You can add review only to products that you have bought'})
+        }
+
+        const review = req.body
+        const editedProduct = {
+            ...productFromDb,
+            reviews: [...productFromDb.reviews, review]
+        }
+
+        const updatedProduct = await Product.findByIdAndUpdate({_id: productId}, {...editedProduct}, {new: true}).lean()
+        if (!updatedProduct) {
+            return res.status(409).json({message: 'Failed to add review to product'})
+        }
+
+        res.status(201).json({message: 'Review added successfully', data: updatedProduct._id})
     } catch (err) {
         next(err)
     }
