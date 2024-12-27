@@ -8,9 +8,8 @@ const returnSchema = new Schema({
         required: true,
         index: true,
     },
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+    userEmail: {
+        type: String,
         required: true
     },
     returnStatus: {

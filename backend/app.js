@@ -10,6 +10,7 @@ const discountRoutes = require('./routes/discount')
 const promotionRoutes = require('./routes/promotion')
 const cartRoutes = require('./routes/cart')
 const orderRoutes = require('./routes/order')
+const returnRoutes = require('./routes/return')
 const globalErrorHandler = require('./utils/global-error-handler')
 
 const mongoose = require('mongoose')
@@ -32,6 +33,7 @@ app.use('/discount', discountRoutes)
 app.use('/promotion', promotionRoutes)
 app.use('/cart', cartRoutes)
 app.use('/order', orderRoutes)
+app.use('/return', returnRoutes)
 
 app.use(globalErrorHandler.errorHandler)
 
