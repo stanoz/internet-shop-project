@@ -1,5 +1,4 @@
 const Order = require('../models/order')
-const User = require('../models/user')
 const Product = require('../models/product')
 const Discount = require('../models/discount')
 const Promotion = require('../models/promotion')
@@ -179,6 +178,23 @@ exports.getOrder = async (req, res, next) => {
         }
 
         res.status(200).json({message: 'success', data: orderFromDb})
+    } catch (err) {
+        next(err)
+    }
+}
+
+exports.getAll = async (req, res, next) => {
+    if (req.user.email !== 'admin@example.com') {
+        return res.status(403).json({message: 'Permission to edit order denied'})
+    }
+
+    try {
+        const orders = await Order.find().lean()
+        if (Array.isArray(orders) && orders.length > 0) {
+            return res.status(200).json({message: 'success', data: orders})
+        }
+        res.status(404).json({message: 'Orders not found!'})
+
     } catch (err) {
         next(err)
     }

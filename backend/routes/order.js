@@ -11,4 +11,6 @@ router.put('/edit-order/:orderId', authenticate, editOrderValidationRules, valid
 
 router.get('/get-order/:orderId', orderController.getOrder)
 
+router.get('/get-all', authenticate, orderController.getAll)
+
 module.exports = router
