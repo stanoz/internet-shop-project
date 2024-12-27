@@ -3,6 +3,7 @@ const Product = require('../models/product')
 const Discount = require('../models/discount')
 const Promotion = require('../models/promotion')
 const {calculateOrderPrice} = require("../utils/order-utils");
+const {sendEmail} = require("../utils/mail-sender");
 
 exports.createOrder = async (req, res, next) => {
     try {
@@ -21,7 +22,7 @@ exports.createOrder = async (req, res, next) => {
         }
 
         for (const product of products) {
-            const productFromDb = await Product.findById(product.id).lean();
+            const productFromDb = await Product.findById(product.id).lean()
             if (!productFromDb) {
                 throw new Error(`Product with id ${product.id} not found!`);
             }
@@ -55,6 +56,37 @@ exports.createOrder = async (req, res, next) => {
         orderToDb.delivery.method = newOrder.delivery.method.toUpperCase()
 
         await orderToDb.save()
+
+        const emailBody = `
+        Hi ${orderToDb.user.name},
+
+        Thank you for your order! Here are the details:
+
+        Order ID: ${orderToDb._id}
+        Order Status: PENDING
+        Total Price: $${orderToDb.payment.price}
+        Payment Method: ${orderToDb.payment.method}
+        Payment Status: ${orderToDb.payment.paymentStatus}
+        Delivery Method: ${orderToDb.delivery.method}
+        Delivery Status: ${orderToDb.delivery.deliveryStatus}
+        Address: 
+            ${orderToDb.address.street}, 
+            ${orderToDb.address.city}, 
+            ${orderToDb.address.state} ${orderToDb.address.zip}
+
+        Items:
+        ${orderToDb.cart.items.map((item, index) => {
+            return `   ${index + 1}. Product ID: ${item.product}, Quantity: ${item.quantity}`
+        }).join('\n')}
+
+        ${promotion ? `Promotion Applied: ${promotion.code}` : ''}
+        ${discount ? `Discount Applied: ${discount.code}` : ''}
+
+        Thank you for shopping with us!
+        - Your Shop Team
+        `
+
+        sendEmail([{ name: orderToDb.user.name, email: orderToDb.user.email }], 'New Order Created!', emailBody)
 
         res.status(201).json({message: 'Order created successfully!', data: orderToDb._id})
 
@@ -153,6 +185,34 @@ exports.editOrder = async (req, res, next) => {
         if (!updatedOrder) {
             return res.status(409).json({message: 'Failed to update order'})
         }
+
+        const emailBody = `
+        Hi ${updatedOrder.user.name},
+
+        Status of your Order has changed! Here are the details:
+
+        Order ID: ${updatedOrder._id}
+        Order Status: ${updatedOrder.orderStatus}
+        Total Price: $${updatedOrder.payment.price}
+        Payment Method: ${updatedOrder.payment.method}
+        Payment Status: ${updatedOrder.payment.paymentStatus}
+        Delivery Method: ${updatedOrder.delivery.method}
+        Delivery Status: ${updatedOrder.delivery.deliveryStatus}
+        Address: 
+            ${updatedOrder.address.street}, 
+            ${updatedOrder.address.city}, 
+            ${updatedOrder.address.state} ${updatedOrder.address.zip}
+
+        Items:
+        ${updatedOrder.cart.items.map((item, index) => {
+            return `   ${index + 1}. Product ID: ${item.product}, Quantity: ${item.quantity}`
+        }).join('\n')}
+
+        Thank you for shopping with us!
+        - Your Shop Team
+        `
+
+        sendEmail([{ name: updatedOrder.user.name, email: updatedOrder.user.email }], 'Order Status Changed!', emailBody)
 
         res.status(200).json({message: 'Oder updated successfully', data: updatedOrder._id})
 
