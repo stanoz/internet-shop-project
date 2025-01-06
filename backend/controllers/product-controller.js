@@ -8,9 +8,8 @@ exports.getAll = async (req, res, next) => {
         const products = await Product.find().populate('category', 'name').lean()
 
         if (Array.isArray(products) && products.length > 0) {
-            const transformedProducts = products.map(({_id, ...product}) => ({
+            const transformedProducts = products.map(({...product}) => ({
                 ...product,
-                id: _id,
                 category: product.category.name
             }));
 
