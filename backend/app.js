@@ -17,7 +17,9 @@ const currencyRoutes = require('./routes/currency')
 const globalErrorHandler = require('./utils/global-error-handler')
 
 const mongoose = require('mongoose')
-const authenticate = require("./security/authenticateJWT");
+const authenticate = require("./security/authenticateJWT")
+
+const { engine } = require('express-handlebars')
 
 const app = express();
 
@@ -27,6 +29,16 @@ app.use(cors({
 }))
 app.use(express.json())
 app.use(cookieParser())
+
+app.engine('hbs', engine({
+    extname: '.hbs',
+    layoutsDir: './views/layouts',
+    defaultLayout: 'main',
+    partialsDir: './views/partials'
+}));
+app.set('view engine', 'hbs');
+app.set('views', './views');
+app.use(express.static('public'));
 
 app.use('/products', productRoutes)
 app.use('/users', userRoutes)

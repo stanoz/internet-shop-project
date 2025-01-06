@@ -1,0 +1,16 @@
+<h1>Product details</h1>
+
+{{#if product}}
+    <div>
+        <img src="{{product.image}}" alt="{{product.title}}">
+        <h2>{{product.title}}</h2>
+        <p><strong>Category:</strong> {{product.category}}</p>
+        <p><strong>Size:</strong> {{product.size}}</p>
+        <p><strong>Description:</strong> {{product.description}}</p>
+        <p><strong>Price:</strong> {{product.price}} $</p>
+    </div>
+{{else}}
+    <p>{{errorMessage}}</p>
+{{/if}}
+
+<a href="/products/view-all">Go back to all products</a>
