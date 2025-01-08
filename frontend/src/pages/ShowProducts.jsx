@@ -1,22 +1,16 @@
-import {useMutation, useQuery} from "@tanstack/react-query";
-import {fetchProducts} from "../../utils/product.js";
+import {useQuery} from "@tanstack/react-query";
+import {getSearchProducts} from "../../utils/product.js";
 import LoadingIndicator from "../components/LoadingIndicator.jsx";
 import Product from "../components/Product.jsx";
 import ErrorPage from "./ErrorPage.jsx";
-import {fetchCategories} from "../../utils/category.js";
 
 export default function ShowProducts() {
-    let products = []
-    const {error, data, isLoading, isError, isSuccess} = useQuery({
-        queryKey:['products'],
-        queryFn: ({signal}) => fetchProducts({signal})
+
+    const {error, data: products , isLoading, isError, isSuccess} = useQuery({
+        queryKey: ['products', 'search'],
+        queryFn: getSearchProducts
     })
-
-    // const {error: searchError, mutateAsync: data , isLoading: searchIsLoading, isError: searchIsError, isSuccess: searchIsSuccess} = useMutation({
-    //     mutateKey: ['products', 'search'],
-    //     mutateFn: ({signal}) => fetchCategories({signal})
-    // })
-
+console.log(products)
     return (
         <>
             {isError && <ErrorPage error={error}/>}
