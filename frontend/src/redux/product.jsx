@@ -5,7 +5,8 @@ const initialState = {
     minPrice: 0,
     maxPrice: null,
     sizes: [],
-    sort: 'none'
+    sort: 'none',
+    title: null,
 }
 
 export const productSlice = createSlice({
@@ -18,6 +19,7 @@ export const productSlice = createSlice({
             state.maxPrice = action.payload.maxPrice || state.maxPrice
             state.sizes = action.payload.sizes || state.sizes
             state.sort = action.payload.sort || state.sort
+            state.title = action.payload.title || state.title
         }
     }
 })

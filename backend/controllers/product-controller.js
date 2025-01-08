@@ -46,7 +46,7 @@ exports.getProduct = async (req, res, next) => {
 }
 
 exports.searchProducts = async (req, res, next) => {
-console.log('search products')
+
     try {
         const params = {
             category: req.query.category || null,
@@ -56,7 +56,7 @@ console.log('search products')
             title: req.query.title || null,
             sort: req.query.sort || 'none'
         }
-        console.log(params)
+
         const products = await Product.find().populate('category', 'name').lean()
 
         if (Array.isArray(products) && products.length > 0) {

@@ -17,13 +17,8 @@ export async function fetchProducts() {
     }
 }
 
-export async function getSearchProducts(category, minPrice, maxPrice, sizes, sort) {
-    console.log(category)
-    console.log(minPrice)
-    console.log(maxPrice)
-    console.log(sizes)
-    console.log(sort)
-    let params = `?category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&sizes=${sizes}&sort=${sort}`
+export async function getSearchProducts(category, minPrice, maxPrice, sizes, sort, title) {
+    let params = `?category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&sizes=${sizes}&sort=${sort}&title=${title}`
     const response = await axios.get(`http://localhost:3000/products/search${params}`)
 
     if (response.status === 200) {

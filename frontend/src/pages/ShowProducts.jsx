@@ -6,11 +6,11 @@ import ErrorPage from "./ErrorPage.jsx";
 import {useSelector} from "react-redux";
 
 export default function ShowProducts() {
-    const {category, minPrice, maxPrice, sizes, sort} = useSelector((state) => state.product)
+    const {category, minPrice, maxPrice, sizes, sort, title} = useSelector((state) => state.product)
 
     const {error, data: products , isLoading, isError, isSuccess} = useQuery({
         queryKey: ['products', 'search'],
-        queryFn: () => getSearchProducts(category, minPrice, maxPrice, sizes, sort)
+        queryFn: () => getSearchProducts(category, minPrice, maxPrice, sizes, sort, title)
     })
 console.log(products)
     return (
