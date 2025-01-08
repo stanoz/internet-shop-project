@@ -46,32 +46,40 @@ exports.getProduct = async (req, res, next) => {
 }
 
 exports.searchProducts = async (req, res, next) => {
-
+console.log('search products')
     try {
         const params = {
             category: req.query.category || null,
             minPrice: Number(req.query.minPrice) || null,
             maxPrice: Number(req.query.maxPrice) || null,
-            size: req.query.size || null,
-            title: req.query.title || null
+            sizes: req.query.sizes ? req.query.sizes.split(',') : null,
+            title: req.query.title || null,
+            sort: req.query.sort || 'none'
         }
-
+        console.log(params)
         const products = await Product.find().populate('category', 'name').lean()
 
         if (Array.isArray(products) && products.length > 0) {
-            const transformedProducts = products.map(({_id, ...product}) => ({
+            const transformedProducts = products.map(({...product}) => ({
                 ...product,
-                id: _id,
                 category: product.category.name
             }))
 
             const filteredProducts = transformedProducts.filter(product => {
-                return (!params.category || product.category === params.category) &&
+                return (
+                    (params.category === 'all' || !params.category || product.category === params.category) &&
                     (!params.minPrice || product.price >= params.minPrice) &&
                     (!params.maxPrice || product.price <= params.maxPrice) &&
-                    (!params.size || product.size === params.size) &&
+                    (!params.sizes || params.sizes.includes(product.size)) &&
                     (!params.title || product.title.includes(params.title))
+                )
             })
+
+            if (params.sort === 'price-ascending') {
+                filteredProducts.sort((a, b) => a.price - b.price);
+            } else if (params.sort === 'price-descending') {
+                filteredProducts.sort((a, b) => b.price - a.price);
+            }
 
             if (!filteredProducts.length) {
                 return res.status(404).json({message: "No products match params!"})

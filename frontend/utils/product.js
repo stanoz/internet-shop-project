@@ -1,5 +1,4 @@
 import axios from "axios";
-import {useSelector} from "react-redux";
 
 export async function fetchProducts() {
     const response = await axios.get('http://localhost:3000/products/get-all')
@@ -18,10 +17,13 @@ export async function fetchProducts() {
     }
 }
 
-export async function getSearchProducts() {
-    //TODO: wywal to, bo sie wywala
-    const {category, minPrice, maxPrice, sizes} = useSelector((state) => state.product)
-    let params = `?category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&sizes=${sizes}`
+export async function getSearchProducts(category, minPrice, maxPrice, sizes, sort) {
+    console.log(category)
+    console.log(minPrice)
+    console.log(maxPrice)
+    console.log(sizes)
+    console.log(sort)
+    let params = `?category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&sizes=${sizes}&sort=${sort}`
     const response = await axios.get(`http://localhost:3000/products/search${params}`)
 
     if (response.status === 200) {

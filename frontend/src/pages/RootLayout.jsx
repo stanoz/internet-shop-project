@@ -4,10 +4,12 @@ import Header from "./Header.jsx";
 
 export default function RootLayout() {
     return (
-        <>
+        <div className="flex flex-col min-h-screen">
             <Header/>
-            <Outlet />
-            <Footer />
-        </>
+            <div className="flex-grow">
+                <Outlet/>
+            </div>
+            <Footer/>
+        </div>
     );
 }
