@@ -77,6 +77,13 @@ exports.register = async (req, res, next) => {
 
         await userToDb.save()
 
+        const jwtToken = jwt.sign({email : user.email}, 'AccessToken', {expiresIn: '10h'})
+        res.cookie('token', jwtToken, {
+            httpOnly: true,
+            sameSite: 'Strict',
+            maxAge: 36000000 //10h
+        })
+
         res.status(201).json({message: 'User registered successfully!'})
 
     } catch (err) {
