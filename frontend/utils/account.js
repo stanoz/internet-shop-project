@@ -7,8 +7,15 @@ export async function registerUser(user) {
     });
 }
 
+export async function loginUser (userCredentials) {
+    const url = 'http://localhost:3000/users/login'
+    return await axios.post(url, userCredentials, {
+        withCredentials: true,
+    })
+}
+
 export async function logout() {
-    await axios.post(
+    return await axios.post(
         "http://localhost:3000/users/logout",
         {},
         {

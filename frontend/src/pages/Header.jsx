@@ -5,13 +5,18 @@ import Categories from "../components/Categories.jsx";
 import Filters from "../components/Filters/Filters.jsx";
 import {useAuth} from "../context/AuthContext.jsx";
 import {Link} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Button from "../components/Button.jsx";
 import {logout} from "../../utils/account.js";
+import {useMutation} from "@tanstack/react-query";
 
 export default function Header() {
-    const {isLoggedIn} = useAuth()
+    const {isLoggedIn, setIsLoggedIn} = useAuth()
     const [isMenuVisible, setIsMenuVisible] = useState(false);
+
+    const {mutate, isSuccess} = useMutation({
+        mutationFn: logout,
+    });
 
     const handleClickAccount = () => {
         setIsMenuVisible(!isMenuVisible);
@@ -23,8 +28,16 @@ export default function Header() {
 
     const handleLogoutClick = () => {
         setIsMenuVisible(false)
-        logout();
+        mutate()
+        setIsMenuVisible(false)
     }
+
+    useEffect(() => {
+        if (isSuccess) {
+            setIsLoggedIn(false)
+        }
+    }, [isSuccess]);
+
     return (
         <div className="bg-sky-50 p-4 block mb-2">
             <div className="container mx-auto grid grid-cols-1 gap-4 md:grid-cols-3 items-center">
