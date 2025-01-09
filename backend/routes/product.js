@@ -9,6 +9,8 @@ const router = express.Router()
 
 router.get('/get-all', productController.getAll)
 
+router.get('/get-names', productController.getNames)
+
 router.get('/search', productController.searchProducts)
 
 router.get('/get-product/:productId', productController.getProduct)

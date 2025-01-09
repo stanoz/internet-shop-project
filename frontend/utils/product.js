@@ -34,3 +34,8 @@ export async function getSearchProducts(category, minPrice, maxPrice, sizes, sor
         message: response.statusText
     }
 }
+
+export async function fetchProductNames() {
+    const response = await axios.get('http://localhost:3000/products/get-names')
+    return response.data.data;
+}

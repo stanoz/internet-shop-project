@@ -12,7 +12,7 @@ export default function ShowProducts() {
         queryKey: ['products', 'search'],
         queryFn: () => getSearchProducts(category, minPrice, maxPrice, sizes, sort, title)
     })
-console.log(products)
+
     return (
         <>
             {isError && <ErrorPage error={error}/>}

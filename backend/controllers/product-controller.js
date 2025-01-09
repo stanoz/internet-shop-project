@@ -2,6 +2,22 @@ const Product = require('../models/product')
 const Order = require('../models/order')
 const addProducts = require('../data/add-products')
 
+exports.getNames = async (req, res, next) => {
+    try {
+        const products = await Product.find().lean()
+
+        if (Array.isArray(products) && products.length > 0) {
+            const productNames = products.map((product) => product.title);
+
+            return res.status(200).json({message: 'success', data: productNames})
+        }
+
+        return res.status(404).json({message: 'Products not found!'})
+    } catch (err) {
+        next(err)
+    }
+}
+
 exports.getAll = async (req, res, next) => {
 
     try {
@@ -53,7 +69,7 @@ exports.searchProducts = async (req, res, next) => {
             minPrice: Number(req.query.minPrice) || null,
             maxPrice: Number(req.query.maxPrice) || null,
             sizes: req.query.sizes ? req.query.sizes.split(',') : null,
-            title: req.query.title || null,
+            title: req.query.title === 'null' ? null : req.query.title,
             sort: req.query.sort || 'none'
         }
 
