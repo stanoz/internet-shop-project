@@ -52,8 +52,8 @@ exports.getProduct = async (req, res, next) => {
             return res.status(404).json({message: 'Product not found!'})
         }
 
-        const {_id, ...rest} = product;
-        const transformedProduct = {...rest, id: _id, category: product.category.name};
+        const {...rest} = product;
+        const transformedProduct = {...rest, category: product.category.name};
 
         res.status(200).json({message: 'success', data: transformedProduct})
     } catch (err) {

@@ -1,4 +1,6 @@
 import Reviews from "./Reviews.jsx";
+import {FaCartPlus} from "react-icons/fa";
+import AddToCartForm from "./AddToCartForm.jsx";
 
 export default function ProductDetails({product}) {
     return (
@@ -17,7 +19,7 @@ export default function ProductDetails({product}) {
                 </div>
                 <Reviews reviews={product.reviews}/>
             </div>
-            <div>add to cart</div>
+            <AddToCartForm product={product} />
         </div>
     )
 }

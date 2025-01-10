@@ -9,10 +9,12 @@ import {useEffect, useState} from "react";
 import Button from "../components/Button.jsx";
 import {logout} from "../../utils/account.js";
 import {useMutation} from "@tanstack/react-query";
+import Cart from "../components/Cart.jsx";
 
 export default function Header() {
     const {isLoggedIn, setIsLoggedIn} = useAuth()
     const [isMenuVisible, setIsMenuVisible] = useState(false);
+    const [showCart, setShowCart] = useState(false)
 
     const navigate = useNavigate()
 
@@ -33,6 +35,10 @@ export default function Header() {
         setIsMenuVisible(false)
         mutate()
         setIsMenuVisible(false)
+    }
+
+    const handleClickCart = () => {
+        setShowCart(!showCart)
     }
 
     useEffect(() => {
@@ -78,7 +84,8 @@ export default function Header() {
                             }
                         </div>
                     )}
-                    <FaCartShopping className="text-2xl cursor-pointer hover:text-zinc-600"/>
+                    <FaCartShopping onClick={handleClickCart} className="text-2xl cursor-pointer hover:text-zinc-600"/>
+                    {showCart && <Cart />}
                 </div>
             </div>
         </div>

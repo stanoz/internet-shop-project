@@ -20,7 +20,7 @@ export default function Product({product}) {
                     <h2 className='ml-1 mt-0.5 mb-1'>{product.title}</h2>
                     <span className='ml-1 mb-1 block'>{product.price}</span>
                 </div>
-                <FaCartPlus className='ml-2 mr-4' size={30}/>
+                <FaCartPlus className='ml-2 mr-4 hover:text-green-400' size={30}/>
             </div>
         </div>
     )

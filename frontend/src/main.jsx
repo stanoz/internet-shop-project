@@ -5,12 +5,15 @@ import App from './App.jsx'
 import {Provider} from "react-redux";
 import store from "./redux/store.jsx";
 import {AuthContextProvider} from "./context/AuthContext.jsx";
+import {CartProvider} from "./reducer/cart-context.jsx";
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <Provider store={store}>
             <AuthContextProvider>
-                <App/>
+                <CartProvider>
+                    <App/>
+                </CartProvider>
             </AuthContextProvider>
         </Provider>
     </StrictMode>,
