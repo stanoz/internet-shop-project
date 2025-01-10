@@ -6,7 +6,7 @@ export default function Review({review}) {
             <Rate allowHalf disabled defaultValue={review.rate}/>
             <div>
                 <p>Author: {review.author}</p>
-                <p>{review.description}</p>
+                <p className='max-w-96'>{review.description}</p>
             </div>
         </div>
     )

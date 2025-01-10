@@ -19,10 +19,10 @@ export default function ShowProductDetails() {
             {isError && <ErrorPage error={error}/>}
             {isLoading && <LoadingIndicator/>}
             {isSuccess && (
-                <>
+                <div className='flex flex-col justify-center'>
                     <ProductDetails product={product}/>
                     <ConnectedProducts category={product.category} />
-                </>
+                </div>
             )}
         </>
     )
