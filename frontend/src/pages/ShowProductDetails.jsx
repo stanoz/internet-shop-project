@@ -4,6 +4,7 @@ import {getProductDetails} from "../../utils/product.js";
 import ErrorPage from "./ErrorPage.jsx";
 import LoadingIndicator from "../components/LoadingIndicator.jsx";
 import ProductDetails from "../components/ProductDetails.jsx";
+import ConnectedProducts from "../components/ConnectedProducts.jsx";
 
 export default function ShowProductDetails() {
     const {productId} = useParams()
@@ -18,7 +19,10 @@ export default function ShowProductDetails() {
             {isError && <ErrorPage error={error}/>}
             {isLoading && <LoadingIndicator/>}
             {isSuccess && (
-                <ProductDetails product={product}/>
+                <>
+                    <ProductDetails product={product}/>
+                    <ConnectedProducts category={product.category} />
+                </>
             )}
         </>
     )
