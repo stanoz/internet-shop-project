@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar.jsx";
 import Categories from "../components/Categories.jsx";
 import Filters from "../components/Filters/Filters.jsx";
 import {useAuth} from "../context/AuthContext.jsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import Button from "../components/Button.jsx";
 import {logout} from "../../utils/account.js";
@@ -14,6 +14,8 @@ export default function Header() {
     const {isLoggedIn, setIsLoggedIn} = useAuth()
     const [isMenuVisible, setIsMenuVisible] = useState(false);
 
+    const navigate = useNavigate()
+
     const {mutate, isSuccess} = useMutation({
         mutationFn: logout,
     });
@@ -22,8 +24,9 @@ export default function Header() {
         setIsMenuVisible(!isMenuVisible);
     }
 
-    const handleClickLink = () => {
+    const handleClickLink = (navigateTo) => {
         setIsMenuVisible(false);
+        navigate(navigateTo)
     }
 
     const handleLogoutClick = () => {
@@ -56,21 +59,26 @@ export default function Header() {
                     <Filters/>
                 </div>
                 <div className="md:col-span-3 col-span-1 flex justify-end order-5">
-                    <VscAccount className="text-2xl cursor-pointer mr-4" onClick={handleClickAccount}/>
+                    <VscAccount className="text-2xl cursor-pointer mr-4 hover:text-zinc-600"
+                                onClick={handleClickAccount}/>
                     {isMenuVisible && (
-                        <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg">
+                        <div className="absolute mt-12 w-fit bg-white border rounded shadow-lg">
                             {!isLoggedIn ? (
                                 <ul>
-                                    <li onClick={handleClickLink}><Link to='/login'>Login</Link></li>
-                                    <li onClick={handleClickLink}><Link to='/register'>Register</Link></li>
+                                    <li onClick={() => handleClickLink('/login')}
+                                        className='px-4 py-2 cursor-pointer hover:bg-stone-100'>Login
+                                    </li>
+                                    <li onClick={() => handleClickLink('/register')}
+                                        className='px-4 py-2 cursor-pointer hover:bg-stone-100'>Register
+                                    </li>
                                 </ul>
                             ) : (
-                                <Button onClick={handleLogoutClick}>Log out</Button>
+                                <Button cssClasses='hover:bg-stone-100 p-2' onClick={handleLogoutClick}>Log out</Button>
                             )
                             }
                         </div>
                     )}
-                    <FaCartShopping className="text-2xl cursor-pointer"/>
+                    <FaCartShopping className="text-2xl cursor-pointer hover:text-zinc-600"/>
                 </div>
             </div>
         </div>

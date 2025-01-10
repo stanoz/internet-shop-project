@@ -16,7 +16,7 @@ export default function ConnectedProducts({category}) {
             {isLoading && <LoadingIndicator />}
             {isSuccess && (
                 <ul className='flex flex-wrap justify-center'>
-                    {connectedProducts.slice(0, 3).map(product => (
+                    {connectedProducts.slice(1, 4).map(product => (
                         <li key={product._id}><Product product={product}/></li>
                     ))}
                 </ul>

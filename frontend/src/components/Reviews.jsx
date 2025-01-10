@@ -11,7 +11,7 @@ export default function Reviews({reviews}) {
         reviews.length > 0 ?
             (
                 <div>
-                    <p>Average rating: <Rate allowHalf disabled defaultValue={averageRating}/></p>
+                    <div className='flex items-center'><p className='mr-4'>Average rating:</p> <Rate allowHalf disabled defaultValue={averageRating}/></div>
                     <ul>
                         {reviews.map((review) => (
                             <li key={review._id}><Review review={review}/></li>

@@ -100,7 +100,7 @@ export default function Register() {
                     error={isNotValid["confirm-password"]}
                 />
                 <Button
-                    cssClasses='bg-emerald-300 text-white rounded-sm p-2 mt-3 hover:bg-emerald-400 cursor-pointer'
+                    cssClasses='bg-emerald-300 text-white rounded-md p-2 mt-3 hover:bg-emerald-400 cursor-pointer'
                     type='submit'
                     disabled={
                     !didEdit.name ||

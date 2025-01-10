@@ -10,7 +10,7 @@ export default function ShowProductDetails() {
     const {productId} = useParams()
 
     const {isSuccess, isLoading, data: product, isError, error} = useQuery({
-        queryKey: ['product', 'details'],
+        queryKey: ['product', 'details', productId],
         queryFn: () => getProductDetails(productId)
     })
 
