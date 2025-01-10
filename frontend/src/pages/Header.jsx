@@ -39,7 +39,7 @@ export default function Header() {
     }, [isSuccess]);
 
     return (
-        <div className="bg-sky-50 p-4 block mb-2">
+        <div className="bg-sky-50 p-4 block">
             <div className="container mx-auto grid grid-cols-1 gap-4 md:grid-cols-3 items-center">
                 <div className="flex justify-between items-center md:col-span-1">
                     <h1 className="text-2xl font-bold text-blue-500"><Link to='/'>Clothes Shop</Link></h1>

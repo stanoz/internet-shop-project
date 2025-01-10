@@ -22,8 +22,8 @@ export default function FormContainer({
     return (
         <>
             {error && <p>{error.response?.data?.message}</p>}
-            <div className="h-screen bg-cover bg-no-repeat bg-center flex items-center justify-center w-screen">
-                <div className="bg-amber-400 w-[30rem] rounded-md px-10 py-8 flex flex-col h-full justify-center">
+            <div className="flex items-center justify-center w-screen p-6">
+                <div className="bg-cyan-200 w-[30rem] rounded-md px-10 py-4 flex flex-col h-full justify-center">
                     <h1 className="text-center text-2xl text-white font-bold pb-8">
                         {header}
                     </h1>
