@@ -85,7 +85,7 @@ export default function Header() {
                         </div>
                     )}
                     <FaCartShopping onClick={handleClickCart} className="text-2xl cursor-pointer hover:text-zinc-600"/>
-                    {showCart && <Cart />}
+                    {showCart && <div className='absolute w-fit h-fit mt-10'><Cart /></div>}
                 </div>
             </div>
         </div>
