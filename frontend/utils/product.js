@@ -39,3 +39,9 @@ export async function fetchProductNames() {
     const response = await axios.get('http://localhost:3000/products/get-names')
     return response.data.data;
 }
+
+export async function getProductDetails(productId) {
+    const url = `http://localhost:3000/products/get-product/${productId}`
+    const response = await axios.get(url)
+    return response.data.data
+}

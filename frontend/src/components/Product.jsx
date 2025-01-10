@@ -1,8 +1,18 @@
 import {FaCartPlus} from "react-icons/fa";
+import {useNavigate} from "react-router-dom";
 
 export default function Product({product}) {
+
+    const navigate = useNavigate();
+
+    const handleClickProduct = (productId) => {
+        navigate(`product-details/${productId}`)
+    }
+
     return (
-        <div className='border-2 border-neutral-300 block m-2.5 rounded-md hover:border-neutral-500 cursor-pointer '>
+        <div
+            onClick={() => handleClickProduct(product._id)}
+            className='border-2 border-neutral-300 block m-2.5 rounded-md hover:border-neutral-500 cursor-pointer '>
 
             <img className='w-64 h-64 object-cover  rounded-t-md' src={product.image} alt={product.title}/>
             <div className='flex items-center justify-between'>

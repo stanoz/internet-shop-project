@@ -4,6 +4,7 @@ import RootLayout from "../pages/RootLayout.jsx";
 import ShowProducts from "../pages/ShowProducts.jsx";
 import Login from "../pages/Login.jsx";
 import Register from "../pages/Register.jsx";
+import ShowProductDetails from "../pages/ShowProductDetails.jsx";
 
 const router = createBrowserRouter([{
     path: '/',
@@ -18,6 +19,10 @@ const router = createBrowserRouter([{
         {
             path: 'register',
             element: <Register />
+        },
+        {
+            path: 'product-details/:productId',
+            element: <ShowProductDetails />
         }
     ]
 }])
