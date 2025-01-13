@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar.jsx";
 import Categories from "../components/Categories.jsx";
 import Filters from "../components/Filters/Filters.jsx";
 import {useAuth} from "../context/AuthContext.jsx";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import Button from "../components/Button.jsx";
 import {logout} from "../../utils/account.js";
@@ -17,6 +17,8 @@ export default function Header() {
     const [showCart, setShowCart] = useState(false)
 
     const navigate = useNavigate()
+
+    const {pathname} = useLocation()
 
     const {mutate, isSuccess} = useMutation({
         mutationFn: logout,
@@ -54,16 +56,19 @@ export default function Header() {
                     <h1 className="text-2xl font-bold text-blue-500"><Link to='/'>Clothes Shop</Link></h1>
 
                 </div>
-                <div className="md:col-span-3 order-2 flex justify-center mb-1">
-                    <SearchBar/>
-                </div>
-                <div
-                    className="col-span-1 md:col-span-3 flex justify-center gap-6 text-lg font-medium text-gray-700 order-3">
-                    <Categories/>
-                </div>
-                <div className="col-span-1 order-4">
-                    <Filters/>
-                </div>
+                {pathname === '/' && (
+                    <>
+                        <div className="md:col-span-3 order-2 flex justify-center mb-1">
+                            <SearchBar/>
+                        </div>
+                        <div
+                            className="col-span-1 md:col-span-3 flex justify-center gap-6 text-lg font-medium text-gray-700 order-3">
+                            <Categories/>
+                        </div>
+                        <div className="col-span-1 order-4">
+                            <Filters/>
+                        </div>
+                    </>)}
                 <div className="md:col-span-3 col-span-1 flex justify-end order-5">
                     <VscAccount className="text-2xl cursor-pointer mr-4 hover:text-zinc-600"
                                 onClick={handleClickAccount}/>
@@ -85,7 +90,7 @@ export default function Header() {
                         </div>
                     )}
                     <FaCartShopping onClick={handleClickCart} className="text-2xl cursor-pointer hover:text-zinc-600"/>
-                    {showCart && <div className='absolute w-fit h-fit mt-10 right-0'><Cart /></div>}
+                    {showCart && <div className='absolute w-fit h-fit mt-10 right-0'><Cart/></div>}
                 </div>
             </div>
         </div>
