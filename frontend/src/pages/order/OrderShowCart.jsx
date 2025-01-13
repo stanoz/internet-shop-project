@@ -1,5 +1,5 @@
-import {useCart} from "../reducer/cart-context.jsx";
-import Steps from "../components/Steps.jsx";
+import {useCart} from "../../reducer/cart-context.jsx";
+import Steps from "../../components/Steps.jsx";
 import {Link} from "react-router-dom";
 
 export default function OrderShowCart() {

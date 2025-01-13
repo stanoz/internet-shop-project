@@ -5,8 +5,10 @@ import ShowProducts from "../pages/ShowProducts.jsx";
 import Login from "../pages/Login.jsx";
 import Register from "../pages/Register.jsx";
 import ShowProductDetails from "../pages/ShowProductDetails.jsx";
-import OrderShowCart from "../pages/OrderShowCart.jsx";
-import OrderUserData from "../pages/OrderUserData.jsx";
+import OrderShowCart from "../pages/order/OrderShowCart.jsx";
+import OrderUserData from "../pages/order/OrderUserData.jsx";
+import OrderMethods from "../pages/order/OrderMethods.jsx";
+import OrderSummary from "../pages/order/OrderSummary.jsx";
 
 const router = createBrowserRouter([{
     path: '/',
@@ -35,10 +37,12 @@ const router = createBrowserRouter([{
             element: <OrderUserData />
         },
         {
-            path: 'order/step3'
+            path: 'order/step3',
+            element: <OrderMethods />
         },
         {
-            path: 'order/step4'
+            path: 'order/step4',
+            element: <OrderSummary />
         },
     ]
 }])
