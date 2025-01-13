@@ -86,9 +86,9 @@ exports.createOrder = async (req, res, next) => {
         - Your Shop Team
         `
 
-        sendEmail([{ name: orderToDb.user.name, email: orderToDb.user.email }], 'New Order Created!', emailBody)
+        sendEmail([{ name: orderToDb.user.name, email: orderToDb.user.email }], 'New OrderShowCart Created!', emailBody)
 
-        res.status(201).json({message: 'Order created successfully!', data: orderToDb._id})
+        res.status(201).json({message: 'OrderShowCart created successfully!', data: orderToDb._id})
 
     } catch (err) {
         next(err)
@@ -112,7 +112,7 @@ exports.editOrder = async (req, res, next) => {
             .lean()
 
         if (!orderFromDb) {
-            return res.status(404).json({message: 'Order not found!'})
+            return res.status(404).json({message: 'OrderShowCart not found!'})
         }
 
         const editOrder = req.body
@@ -122,7 +122,7 @@ exports.editOrder = async (req, res, next) => {
         const deliveryStatusEnum = ['WAITING', 'IN_TRANSIT', 'DELIVERED']
 
         if (editOrder.orderStatus && !orderStatusEnum.includes(editOrder.orderStatus.toUpperCase())) {
-            return res.status(400).json({message: 'Order status is not valid!'})
+            return res.status(400).json({message: 'OrderShowCart status is not valid!'})
         }
 
         if (editOrder.payment && editOrder.payment.paymentStatus && !paymentStatusEnum.includes(editOrder.payment.paymentStatus.toUpperCase())) {
@@ -212,7 +212,7 @@ exports.editOrder = async (req, res, next) => {
         - Your Shop Team
         `
 
-        sendEmail([{ name: updatedOrder.user.name, email: updatedOrder.user.email }], 'Order Status Changed!', emailBody)
+        sendEmail([{ name: updatedOrder.user.name, email: updatedOrder.user.email }], 'OrderShowCart Status Changed!', emailBody)
 
         res.status(200).json({message: 'Oder updated successfully', data: updatedOrder._id})
 
@@ -234,7 +234,7 @@ exports.getOrder = async (req, res, next) => {
             .lean()
 
         if (!orderFromDb) {
-            return res.status(404).json({message: 'Order not found!'})
+            return res.status(404).json({message: 'OrderShowCart not found!'})
         }
 
         res.status(200).json({message: 'success', data: orderFromDb})

@@ -44,7 +44,7 @@ const addOrderValidationRules = [
 ]
 const editOrderValidationRules = [
     check('orderStatus').optional()
-        .trim().notEmpty().withMessage('Order status is required!')
+        .trim().notEmpty().withMessage('OrderShowCart status is required!')
         .isLength({min: 7, max: 10}).withMessage('Permitted values: PENDING, PROCESSING, SHIPPED, DELIVERED, CANCELLED'),
     check('cart').optional()
         .isObject().withMessage('Cart must be an object!'),

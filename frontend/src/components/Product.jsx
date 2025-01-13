@@ -2,6 +2,7 @@ import {FaCartPlus} from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
 import {useCart} from "../reducer/cart-context.jsx";
 import {addProduct} from "../reducer/cart-actions.jsx";
+import {useCallback} from "react";
 
 export default function Product({product}) {
     const {dispatch} = useCart();
@@ -11,9 +12,9 @@ export default function Product({product}) {
         navigate(`/product-details/${productId}`)
     }
 
-    const handleClickCart = () => {
+    const handleClickCart = useCallback(() => {
         dispatch(addProduct(product))
-    }
+    }, [dispatch]);
 
     return (
         <div className='border-2 border-neutral-300 block m-2.5 rounded-md hover:border-neutral-500 cursor-pointer'>

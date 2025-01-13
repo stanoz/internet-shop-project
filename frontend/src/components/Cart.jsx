@@ -50,7 +50,7 @@ export default function Cart() {
                 <div className='flex justify-between mt-3 items-center'>
                     <h3 className='underline decoration-2 decoration-blue-500 text-lg'>Total:
                         ${state.totalPrice.toFixed(2)}</h3>
-                    <Link to='/'
+                    <Link to='/order/step1'
                           className='bg-violet-500 hover:bg-violet-600 text-lg text-center text-white py-0.5 px-1 rounded-md'>ORDER</Link>
                 </div>
             </div>
