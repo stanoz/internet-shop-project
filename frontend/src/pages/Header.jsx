@@ -10,6 +10,8 @@ import Button from "../components/Button.jsx";
 import {logout} from "../../utils/account.js";
 import {useMutation} from "@tanstack/react-query";
 import Cart from "../components/Cart.jsx";
+import {useDispatch} from "react-redux";
+import {accountAction} from "../redux/account.jsx";
 
 export default function Header() {
     const {isLoggedIn, setIsLoggedIn} = useAuth()
@@ -17,6 +19,8 @@ export default function Header() {
     const [showCart, setShowCart] = useState(false)
 
     const navigate = useNavigate()
+
+    const dispatch = useDispatch()
 
     const {pathname} = useLocation()
 
@@ -46,6 +50,7 @@ export default function Header() {
     useEffect(() => {
         if (isSuccess) {
             setIsLoggedIn(false)
+            dispatch(accountAction.signOut())
         }
     }, [isSuccess]);
 

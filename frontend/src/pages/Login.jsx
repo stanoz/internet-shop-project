@@ -6,14 +6,17 @@ import {useAuth} from "../context/AuthContext.jsx";
 import {useMutation} from "@tanstack/react-query";
 import {useEffect} from "react";
 import {loginUser} from "../../utils/account.js";
+import {useDispatch} from "react-redux";
+import {accountAction} from "../redux/account.jsx";
 
 export default function Login() {
 
-    const {mutate, isSuccess, error} = useMutation({
+    const {mutate, isSuccess, error, data} = useMutation({
         mutationFn: loginUser,
     });
 
     const {setIsLoggedIn} = useAuth()
+    const dispatch = useDispatch()
 
     const {
         enteredValue,
@@ -33,7 +36,9 @@ export default function Login() {
 
     useEffect(() => {
         if (isSuccess) {
+            console.log(data)
             setIsLoggedIn(true)
+            dispatch(accountAction.setIsAdmin({role: data.isAdmin}))
         }
     }, [isSuccess]);
 
@@ -71,6 +76,7 @@ export default function Login() {
                     disabled={
                         !didEdit.email ||
                         !didEdit.password
+                        || isNotValid.email
                     }>Sign in</Button>
             </form>
         </FormContainer>

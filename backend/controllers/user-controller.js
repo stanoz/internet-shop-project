@@ -51,7 +51,7 @@ exports.login = async (req, res, next) => {
                 sameSite: 'Strict',
                 maxAge: 36000000 //10h
             })
-            return res.status(200).json({message: 'User logged in successfully!'})
+            return res.status(200).json({message: 'User logged in successfully!', isAdmin: userFromDb.isAdmin})
         }
         res.status(401).json({message: 'Invalid credentials!'})
 

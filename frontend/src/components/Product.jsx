@@ -23,7 +23,7 @@ export default function Product({product}) {
                 <div className='flex items-center justify-between'>
                     <div>
                         <h2 className='ml-1 mt-0.5 mb-1'>{product.title}</h2>
-                        <span className='ml-1 mb-1 block'>{product.price.toFixed(2)}</span>
+                        <span className='ml-1 mb-1 block'>${product.price.toFixed(2)}</span>
                     </div>
                 </div>
             </div>
