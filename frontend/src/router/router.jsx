@@ -9,6 +9,8 @@ import OrderShowCart from "../pages/order/OrderShowCart.jsx";
 import OrderUserData from "../pages/order/OrderUserData.jsx";
 import OrderMethods from "../pages/order/OrderMethods.jsx";
 import OrderSummary from "../pages/order/OrderSummary.jsx";
+import AdminPanel from "../pages/AdminPanel.jsx";
+import Report from "../components/admin/Report.jsx";
 
 const router = createBrowserRouter([{
     path: '/',
@@ -44,6 +46,14 @@ const router = createBrowserRouter([{
             path: 'order/step4',
             element: <OrderSummary />
         },
+        {
+            path: 'admin-panel',
+            element: <AdminPanel />
+        },
+        {
+            path: 'report',
+            element: <Report />
+        }
     ]
 }])
 

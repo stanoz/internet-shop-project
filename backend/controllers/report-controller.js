@@ -6,7 +6,15 @@ exports.generateReport = async (req, res, next) => {
     }
 
     try {
-        const orders = await Order.find().populate('cart.items.product').lean();
+        const orders = await Order.find()
+            .populate({
+                path: 'cart.items.product',
+                populate: {
+                    path: 'category',
+                    model: 'Category'
+                }
+            })
+            .lean();
 
         if (!orders || orders.length === 0) {
             throw new Error('No orders found!');

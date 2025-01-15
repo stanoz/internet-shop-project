@@ -10,7 +10,7 @@ import Button from "../components/Button.jsx";
 import {logout} from "../../utils/account.js";
 import {useMutation} from "@tanstack/react-query";
 import Cart from "../components/Cart.jsx";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {accountAction} from "../redux/account.jsx";
 
 export default function Header() {
@@ -27,6 +27,8 @@ export default function Header() {
     const {mutate, isSuccess} = useMutation({
         mutationFn: logout,
     });
+
+    const isAdmin = useSelector(state => state.account.isAdmin)
 
     const handleClickAccount = () => {
         setIsMenuVisible(!isMenuVisible);
@@ -89,7 +91,12 @@ export default function Header() {
                                     </li>
                                 </ul>
                             ) : (
-                                <Button cssClasses='hover:bg-stone-100 p-2' onClick={handleLogoutClick}>Log out</Button>
+                                <ul>
+                                    <li className='hover:bg-stone-100 text-center'><Button cssClasses='p-2' onClick={handleLogoutClick}>Log out</Button></li>
+                                    <li className='hover:bg-stone-100 p-2'>{isAdmin && (
+                                        <Link to='/admin-panel' className='text-center'>Admin Panel</Link>
+                                    )}</li>
+                                </ul>
                             )
                             }
                         </div>

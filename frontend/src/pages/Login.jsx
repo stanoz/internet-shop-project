@@ -36,7 +36,6 @@ export default function Login() {
 
     useEffect(() => {
         if (isSuccess) {
-            console.log(data)
             setIsLoggedIn(true)
             dispatch(accountAction.setIsAdmin({role: data.isAdmin}))
         }
@@ -76,7 +75,7 @@ export default function Login() {
                     disabled={
                         !didEdit.email ||
                         !didEdit.password
-                        || isNotValid.email
+                        || !isNotValid
                     }>Sign in</Button>
             </form>
         </FormContainer>
