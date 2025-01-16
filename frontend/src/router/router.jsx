@@ -11,9 +11,12 @@ import OrderMethods from "../pages/order/OrderMethods.jsx";
 import OrderSummary from "../pages/order/OrderSummary.jsx";
 import AdminPanel from "../pages/AdminPanel.jsx";
 import Report from "../components/admin/Report.jsx";
-import ManageProducts from "../components/admin/ManageProducts.jsx";
-import EditProduct from "../components/admin/EditProduct.jsx";
-import {AddProduct} from "../components/admin/AddProduct.jsx";
+import ManageProducts from "../components/admin/products/ManageProducts.jsx";
+import EditProduct from "../components/admin/products/EditProduct.jsx";
+import {AddProduct} from "../components/admin/products/AddProduct.jsx";
+import ManageCategories from "../components/admin/categories/ManageCategories.jsx";
+import AddCategory from "../components/admin/categories/AddCategory.jsx";
+import EditCategory from "../components/admin/categories/EditCategory.jsx";
 
 const router = createBrowserRouter([{
     path: '/',
@@ -68,7 +71,19 @@ const router = createBrowserRouter([{
         {
             path: 'add-product',
             element: <AddProduct />
-        }
+        },
+        {
+            path: 'manage-categories',
+            element: <ManageCategories />,
+        },
+        {
+          path: 'add-category',
+          element: <AddCategory />
+        },
+        {
+          path: 'edit-category',
+          element: <EditCategory />
+        },
     ]
 }])
 

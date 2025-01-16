@@ -28,6 +28,35 @@ exports.getAll = async (req, res, next) => {
     }
 }
 
+exports.getById = async (req, res, next) => {
+    try {
+        const userId = req.params.id || null
+
+        if (userId === null) {
+            return res.status(400).json({message: 'Id is invalid!'})
+        }
+
+        const user = await User.findById({_id: userId}).lean()
+
+        if (user) {
+            res.status(200).json({
+                status: 'success',
+                data: user,
+            })
+        } else {
+            res.status(404).json({
+                status: 'User not found',
+                data: [],
+            })
+        }
+    } catch (err) {
+        res.status(409).json({
+            status: 'error',
+            error: err.message,
+        })
+    }
+}
+
 exports.login = async (req, res, next) => {
     const {email, password} = req.body
 

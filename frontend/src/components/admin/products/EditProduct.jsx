@@ -1,17 +1,27 @@
-import React from "react";
-import {Formik, Form, Field, ErrorMessage} from "formik";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import {editProduct, getProductById} from "../../../../utils/admin.js";
 import * as Yup from "yup";
-import {Link} from "react-router-dom";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {addProduct} from "../../../utils/admin.js";
+import {ErrorMessage, Field, Form, Formik} from "formik";
+import {Link, useParams} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 
-export function AddProduct() {
+export default function EditProduct() {
     const {mutate, isSuccess} = useMutation({
-        mutationFn: addProduct
+        mutationFn: ({id, product}) => editProduct(id, product),
     })
-    const queryClient = useQueryClient();
 
-    const initialValues = {
+    const productId = useSelector(state => state.productDetail.id)
+    const {
+        data: queryData,
+        isSuccess: isQuerySuccess,
+        error: queryError,
+    } = useQuery({
+        queryKey: ["product", "get-by-id"],
+        queryFn: () => getProductById(productId),
+    });
+
+    const [initialValues, setInitialValues] = useState({
         title: "",
         description: "",
         category: "",
@@ -19,7 +29,22 @@ export function AddProduct() {
         price: 0,
         size: "XS",
         quantity: 0,
-    };
+    });
+    useEffect(() => {
+        if (queryData) {
+            setInitialValues({
+                title: queryData.data.title,
+                description: queryData.data.description,
+                category: queryData.data.category,
+                image: queryData.data.image,
+                price: queryData.data.price,
+                size: queryData.data.size,
+                quantity: queryData.data.quantity,
+            });
+        }
+    }, [queryData]);
+
+    const queryClient = useQueryClient();
 
     const validationSchema = Yup.object({
         title: Yup.string()
@@ -45,16 +70,16 @@ export function AddProduct() {
             .required("Quantity is required"),
     });
 
-
     return (
         <div className='flex flex-col items-center'>
-            <h2 className='text-center text-2xl my-4'>Add Product</h2>
+            <h2 className='text-center text-2xl my-4'>Edit Product</h2>
             <Formik
+                enableReinitialize={true}
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={(values) => {
-                    mutate(values)
-                    queryClient.invalidateQueries(['products', 'all'])
+                    mutate({id: productId, product: values});
+                    queryClient.invalidateQueries(['products','all','products', 'search'])
                 }}
             >
                 <Form>
@@ -118,6 +143,7 @@ export function AddProduct() {
                     </div>
                 </Form>
             </Formik>
+            {isSuccess && <p className='text-lg text-center text-green-400'>Product edited successfully!</p>}
             <Link to='/manage-products' className='bg-sky-300 hover:bg-cyan-300 px-2 py-1 rounded-md text-lg text-white mt-10'>Return</Link>
         </div>
     );

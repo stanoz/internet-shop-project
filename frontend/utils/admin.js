@@ -23,3 +23,19 @@ export async function getProductById(id) {
 export async function editProduct(id, product) {
     return await axios.put(`http://localhost:3000/admin/edit-product/${id}`, product, {withCredentials: true})
 }
+
+export async function deleteCategory(id) {
+    return (await axios.delete(`http://localhost:3000/admin/delete-category/${id}`, {withCredentials: true})).data
+}
+
+export async function addCategory(category) {
+    return (await axios.post('http://localhost:3000/admin/add-category', category, {withCredentials: true})).data
+}
+
+export async function editCategory(id, category) {
+    return (await axios.put(`http://localhost:3000/admin/edit-category/${id}`, category, {withCredentials: true})).data
+}
+
+export async function getCategoryById(id) {
+    return (await axios.get(`http://localhost:3000/category/get-category/${id}`, {withCredentials: true})).data
+}

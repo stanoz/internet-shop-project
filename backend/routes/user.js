@@ -11,6 +11,8 @@ const router = express.Router()
 
 router.get('/get-all', authenticate, userController.getAll)
 
+router.get('/get-user/:id', authenticate, userController.getById)
+
 router.post('/populate-db', userController.populateDb)
 
 router.post('/login', loginValidationRules, validationExceptionHandler, userController.login)
