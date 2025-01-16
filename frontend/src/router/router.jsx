@@ -19,6 +19,8 @@ import AddCategory from "../components/admin/categories/AddCategory.jsx";
 import EditCategory from "../components/admin/categories/EditCategory.jsx";
 import ManageUsers from "../components/admin/users/ManageUsers.jsx";
 import EditUser from "../components/admin/users/EditUser.jsx";
+import ManageOrders from "../components/admin/orders/ManageOrders.jsx";
+import EditOrder from "../components/admin/orders/EditOrder.jsx";
 
 const router = createBrowserRouter([{
     path: '/',
@@ -93,6 +95,14 @@ const router = createBrowserRouter([{
         {
           path: 'edit-user',
           element: <EditUser />
+        },
+        {
+          path: 'manage-orders',
+          element: <ManageOrders />
+        },
+        {
+          path: 'edit-order',
+          element: <EditOrder />
         },
     ]
 }])

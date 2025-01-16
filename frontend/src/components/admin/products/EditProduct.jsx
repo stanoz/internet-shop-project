@@ -2,7 +2,7 @@ import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {editProduct, getProductById} from "../../../../utils/admin.js";
 import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 

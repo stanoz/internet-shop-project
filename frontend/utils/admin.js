@@ -55,3 +55,15 @@ export async function deleteUser(id) {
 export async function editUser(id, user) {
     return (await axios.put(`http://localhost:3000/users/edit-profile/${id}`, user, {withCredentials: true})).data
 }
+
+export async function getAllOrders() {
+    return (await axios.get('http://localhost:3000/order/get-all', {withCredentials: true})).data
+}
+
+export async function getOrderById(id) {
+    return (await axios.get(`http://localhost:3000/order/get-order/${id}`, {withCredentials: true})).data
+}
+
+export async function editOrder(id, order){
+    return (await axios.put(`http://localhost:3000/order/edit-order/${id}`, order, {withCredentials: true})).data
+}
