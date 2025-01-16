@@ -39,7 +39,7 @@ export default function EditCategory() {
             .max(50, "Name must be less than 50 characters")
             .required("Name is required"),
     });
-console.log(queryData)
+
     return (
         <div className='flex flex-col items-center'>
             <h2 className='text-center text-2xl my-4'>Edit Category</h2>
