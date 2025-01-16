@@ -11,6 +11,9 @@ import OrderMethods from "../pages/order/OrderMethods.jsx";
 import OrderSummary from "../pages/order/OrderSummary.jsx";
 import AdminPanel from "../pages/AdminPanel.jsx";
 import Report from "../components/admin/Report.jsx";
+import ManageProducts from "../components/admin/ManageProducts.jsx";
+import EditProduct from "../components/admin/EditProduct.jsx";
+import {AddProduct} from "../components/admin/AddProduct.jsx";
 
 const router = createBrowserRouter([{
     path: '/',
@@ -53,6 +56,18 @@ const router = createBrowserRouter([{
         {
             path: 'report',
             element: <Report />
+        },
+        {
+            path: 'manage-products',
+            element: <ManageProducts />,
+        },
+        {
+            path: 'edit-product',
+            element: <EditProduct />
+        },
+        {
+            path: 'add-product',
+            element: <AddProduct />
         }
     ]
 }])
