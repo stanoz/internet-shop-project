@@ -39,3 +39,19 @@ export async function editCategory(id, category) {
 export async function getCategoryById(id) {
     return (await axios.get(`http://localhost:3000/category/get-category/${id}`, {withCredentials: true})).data
 }
+
+export async function getAllUsers() {
+    return (await axios.get('http://localhost:3000/users/get-all', {withCredentials: true})).data
+}
+
+export async function getUserById(id) {
+    return (await axios.get(`http://localhost:3000/users/get-user/${id}`, {withCredentials: true})).data
+}
+
+export async function deleteUser(id) {
+    return (await axios.delete(`http://localhost:3000/admin/delete-user/${id}`, {withCredentials: true})).data
+}
+
+export async function editUser(id, user) {
+    return (await axios.put(`http://localhost:3000/users/edit-profile/${id}`, user, {withCredentials: true})).data
+}
