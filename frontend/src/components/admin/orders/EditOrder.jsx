@@ -79,7 +79,7 @@ export default function EditOrder() {
         }),
 
         payment: Yup.object({
-            method: Yup.string().oneOf(["BLIK", "CREDIT_CARD", "PAYPAL"], "Invalid payment method").required("Payment method is required"),
+            method: Yup.string().oneOf(["BLIK", "CREDIT_CARD", "BANK_TRANSFER"], "Invalid payment method").required("Payment method is required"),
         }),
         delivery: Yup.object({
             method: Yup.string()
@@ -180,9 +180,9 @@ export default function EditOrder() {
                         <div>
                             <label htmlFor="payment.method">Payment Method: </label>
                             <Field as="select" id="payment.method" name="payment.method" className='p-1'>
-                                <option value="blik">BLIK</option>
-                                <option value="credit_card">Credit Card</option>
-                                <option value="paypal">PayPal</option>
+                                <option value="BLIK">BLIK</option>
+                                <option value="CREDIT_CARD">Credit Card</option>
+                                <option value="BANK_TRANSFER">Bank Transfer</option>
                             </Field>
                             <ErrorMessage name="payment.method" component="div" className="text-red-600"/>
                         </div>

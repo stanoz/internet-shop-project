@@ -18,7 +18,7 @@ export default function Report() {
                 <div
                     className='flex flex-col items-center mt-20 space-y-10 border-2 border-blue-400 rounded-sm w-fit p-4'>
                     <div className='flex text-center text-2xl'>
-                        <p>Total cost of all orders: ${data.data.totalCost}</p>
+                        <p>Total cost of all orders: ${data.data.totalCost.toFixed(2)}</p>
                     </div>
                     <div className='flex flex-col text-center'>
                         <h3 className='text-xl mb-3'>Orders Per User:</h3>

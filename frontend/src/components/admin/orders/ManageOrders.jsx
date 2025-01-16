@@ -41,7 +41,7 @@ export default function ManageOrders() {
                                         <p>Status: {order.orderStatus}</p>
                                         <p>User: {order.user.name} {order.user.surname}</p>
                                         <p>Email: {order.user.email}</p>
-                                        <p>Total Price: ${order.payment.price}</p>
+                                        <p>Total Price: ${order.payment.price.toFixed(2)}</p>
                                         <p>Payment Status: {order.payment.paymentStatus}</p>
                                         <p>Delivery Method: {order.delivery.method}</p>
                                         <p>Delivery Status: {order.delivery.deliveryStatus}</p>
