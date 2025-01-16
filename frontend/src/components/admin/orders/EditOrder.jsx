@@ -25,15 +25,18 @@ export default function EditOrder() {
         },
         cart: {
             items: [
-                { _id: "", quantity: 0 },
+                { id: "", quantity: 0 },
             ],
         },
         payment: {
             method: "",
+            paymentStatus: "NOT_PAID",
         },
         delivery: {
             method: "",
+            deliveryStatus: "WAITING",
         },
+        orderStatus: "PENDING",
         address: {
             street: "",
             city: "",
@@ -41,6 +44,7 @@ export default function EditOrder() {
             zip: "",
         },
     });
+
 
     useEffect(() => {
         if (queryData) {
@@ -53,12 +57,17 @@ export default function EditOrder() {
                         quantity: item.quantity || 0,
                     })) || [{ id: "", title: "", quantity: 0 }],
                 },
-                payment: queryData.data.payment,
+                payment: {
+                    method: queryData.data.payment.method || "",
+                    paymentStatus: queryData.data.payment.paymentStatus || "NOT_PAID",
+                },
                 delivery: queryData.data.delivery,
+                orderStatus: queryData.data.orderStatus,
                 address: queryData.data.address,
             });
         }
     }, [queryData]);
+
 
 
     const queryClient = useQueryClient();
@@ -77,15 +86,21 @@ export default function EditOrder() {
                 })
             ),
         }),
-
         payment: Yup.object({
             method: Yup.string().oneOf(["BLIK", "CREDIT_CARD", "BANK_TRANSFER"], "Invalid payment method").required("Payment method is required"),
+            paymentStatus: Yup.string().oneOf(["NOT_PAID", "PAID", "FAILED"], "Invalid payment status").required("Payment status is required"),
         }),
         delivery: Yup.object({
             method: Yup.string()
                 .oneOf(["INPOST", "DELIVERY_MAN", "POST"], "Invalid delivery method")
                 .required("Delivery method is required"),
+            deliveryStatus: Yup.string()
+                .oneOf(["WAITING", "IN_TRANSIT", "DELIVERED"], "Invalid delivery status")
+                .required("Delivery status is required"),
         }),
+        orderStatus: Yup.string()
+            .oneOf(["PENDING", "PROCESSING", "SHIPPED", "DELIVERED", "CANCELLED"], "Invalid order status")
+            .required("Order status is required"),
         address: Yup.object({
             street: Yup.string().required("Street is required"),
             city: Yup.string().required("City is required"),
@@ -93,6 +108,7 @@ export default function EditOrder() {
             zip: Yup.string().required("Zip code is required"),
         }),
     });
+
 
     return (
         <div className='flex flex-col items-center'>
@@ -108,6 +124,17 @@ export default function EditOrder() {
             >
                 <Form>
                     <div className='flex flex-col space-y-5'>
+                        <div>
+                            <label htmlFor="orderStatus">Order Status: </label>
+                            <Field as="select" id="orderStatus" name="orderStatus" className="p-1">
+                                <option value="PENDING">PENDING</option>
+                                <option value="PROCESSING">PROCESSING</option>
+                                <option value="SHIPPED">SHIPPED</option>
+                                <option value="DELIVERED">DELIVERED</option>
+                                <option value="CANCELLED">CANCELLED</option>
+                            </Field>
+                            <ErrorMessage name="orderStatus" component="div" className="text-red-600"/>
+                        </div>
                         <div>
                             <label htmlFor="user.name">User Name: </label>
                             <Field id="user.name" name="user.name" className='border border-gray-500 ml-1'/>
@@ -129,7 +156,7 @@ export default function EditOrder() {
                         <div className='flex flex-col space-y-3'>
                             <label htmlFor="cart.items">Cart Items: </label>
                             <FieldArray name="cart.items">
-                                {({ remove, push, form: { values } }) => (
+                                {({remove, push, form: {values}}) => (
                                     <div>
                                         {values.cart.items.map((item, index) => (
                                             <div key={index} className="flex flex-col space-y-4 border p-3 rounded-sm">
@@ -166,7 +193,7 @@ export default function EditOrder() {
                                         ))}
                                         <button
                                             type="button"
-                                            onClick={() => push({ id: "", title: "", quantity: 1 })}
+                                            onClick={() => push({id: "", title: "", quantity: 1})}
                                             className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded-md mt-2"
                                         >
                                             Add Item
@@ -179,22 +206,43 @@ export default function EditOrder() {
 
                         <div>
                             <label htmlFor="payment.method">Payment Method: </label>
-                            <Field as="select" id="payment.method" name="payment.method" className='p-1'>
+                            <Field as="select" id="payment.method" name="payment.method" className="p-1">
                                 <option value="BLIK">BLIK</option>
-                                <option value="CREDIT_CARD">Credit Card</option>
-                                <option value="BANK_TRANSFER">Bank Transfer</option>
+                                <option value="CREDIT_CARD">CREDIT_CARD</option>
+                                <option value="BANK_TRANSFER">BANK_TRANSFER</option>
                             </Field>
                             <ErrorMessage name="payment.method" component="div" className="text-red-600"/>
                         </div>
 
                         <div>
+                            <label htmlFor="payment.paymentStatus">Payment Status: </label>
+                            <Field as="select" id="payment.paymentStatus" name="payment.paymentStatus" className="p-1">
+                                <option value="NOT_PAID">NOT PAID</option>
+                                <option value="PAID">PAID</option>
+                                <option value="FAILED">FAILED</option>
+                            </Field>
+                            <ErrorMessage name="payment.paymentStatus" component="div" className="text-red-600"/>
+                        </div>
+
+                        <div>
                             <label htmlFor="delivery.method">Delivery Method: </label>
-                            <Field as="select" id="delivery.method" name="delivery.method" className='p-1'>
+                            <Field as="select" id="delivery.method" name="delivery.method" className="p-1">
                                 <option value="INPOST">INPOST</option>
                                 <option value="DELIVERY_MAN">DELIVERY_MAN</option>
                                 <option value="POST">POST</option>
                             </Field>
                             <ErrorMessage name="delivery.method" component="div" className="text-red-600"/>
+                        </div>
+
+                        <div>
+                            <label htmlFor="delivery.deliveryStatus">Delivery Status: </label>
+                            <Field as="select" id="delivery.deliveryStatus" name="delivery.deliveryStatus"
+                                   className="p-1">
+                                <option value="WAITING">WAITING</option>
+                                <option value="IN_TRANSIT">IN TRANSIT</option>
+                                <option value="DELIVERED">DELIVERED</option>
+                            </Field>
+                            <ErrorMessage name="delivery.deliveryStatus" component="div" className="text-red-600"/>
                         </div>
 
                         <div>
@@ -224,12 +272,14 @@ export default function EditOrder() {
                         <button
                             type="submit"
                             className='bg-sky-300 hover:bg-cyan-300 px-2 py-1 rounded-md text-lg text-white'
-                        >Submit</button>
+                        >Submit
+                        </button>
                     </div>
                 </Form>
             </Formik>
             {isSuccess && <p className='text-lg text-center text-green-400'>Order edited successfully!</p>}
-            <Link to='/manage-orders' className='bg-sky-300 hover:bg-cyan-300 px-2 py-1 rounded-md text-lg text-white mt-10'>Return</Link>
+            <Link to='/manage-orders'
+                  className='bg-sky-300 hover:bg-cyan-300 px-2 py-1 rounded-md text-lg text-white mt-10'>Return</Link>
         </div>
     );
 }
